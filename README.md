@@ -98,9 +98,9 @@ To get this HTML:
   srcset="
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_960,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1280,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1600,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_960,q_auto,f_auto/https://<your-domain>/assets/img.jpg 960w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1280,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1280w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1600,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1600w
     "
   sizes="(min-width: 50rem) 50rem, 90vw"
   alt="beautiful!"
