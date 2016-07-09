@@ -123,7 +123,7 @@ module Jekyll
         steps = preset['steps'].to_i
         min_width = preset['min_width'].to_i
         max_width = preset['max_width'].to_i
-        step_width = (max_width - min_width) / steps
+        step_width = (max_width - min_width) / (steps - 1)
         sizes = preset['sizes']
 
         if natural_width < min_width
@@ -132,8 +132,8 @@ module Jekyll
           end
           srcset << "http://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/q_auto,f_auto/#{image_url} #{natural_width}w"
         else
-          (0..steps).each do |factor|
-            width = min_width + factor * step_width
+          (1..steps).each do |factor|
+            width = min_width + (factor - 1) * step_width
             if width <= natural_width
               srcset << "http://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
             else
