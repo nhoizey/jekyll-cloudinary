@@ -145,8 +145,8 @@ module Jekyll
         end
         srcset_string = srcset.join(",\n")
 
-        # preset['caption'] can be 'never', 'auto' or 'always'
-        if (caption || preset['caption'] == 'always') && preset['caption'] != 'never'
+        # preset['figure'] can be 'never', 'auto' or 'always'
+        if (caption || preset['figure'] == 'always') && preset['figure'] != 'never'
           "\n<figure #{attr_string}>\n<img src=\"#{image_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{img_attr} />\n<figcaption>#{caption}</figcaption>\n</figure>\n"
         else
           "<img src=\"#{image_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{attr_string} #{img_attr} />"

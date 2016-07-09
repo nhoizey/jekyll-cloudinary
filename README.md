@@ -12,7 +12,7 @@ Here is the general syntax of this Liquid tag:
 {% cloudinary [preset] path/to/img.jpg [attr="value"] %}
 ```
 
-## Using Jekyll Cloudinary
+## Installation
 
 [Sign up for free on Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw). The free account should be enough for most blogs.
 
@@ -91,10 +91,13 @@ To get this HTML:
 
 
 
+There is a true default default preset, but you're strongly encouraged to define your own default preset.
 
 #### Additional presets
 
-You can add other presets if you need several image sizes in your posts, here is an example for images that take only one third of the post width:
+You can add other presets if you need several image sizes in your posts.
+
+Here is an example for images that take only one third of the post width:
 
 ```yaml
 cloudinary:
@@ -107,19 +110,54 @@ cloudinary:
       steps: 3
       sizes: "(min-width: 50rem) 17rem, 30vw"
       attributes:
-        class: onethird
+        class: "one3rd"
 ```
 
-#### `min_size`
+To use this additional preset, you will have to write this in your Markdown post:
 
-#### `max_size`
+```liquid
+{% cloudinary onethird /assets/img.jpg %}
+```
 
-#### `steps`
+The generated element will also get a `class="one3rd"` that can be useful for example with this CSS:
 
-#### `sizes`
+```css
+.one3rd {
+  max-width: 33%;
+  float: right;
+  margin: 0 0 1em 1em;
+}
+```
 
-#### `attributes`
+### Detailed preset settings
 
+#### `figure` (default: `auto`)
+
+This setting lets you decide what to do when there is a `caption` attribute in the Cloudinary Liquid tag.
+
+The value can be:
+
+- `auto` (default): will generate a `<figure>` and `<figcaption>` only if there's a caption
+- `never`: will always generate a `<img>`, losing the caption
+- `always`: will always generate a `<figure>` and `<figcaption>`, even if there's no `caption` attribute
+
+If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt` or `title`, or to the `<figure>`.
+
+#### `min_size` (default: `320`)
+
+#### `max_size` (default: `1200`)
+
+#### `steps` (default: `5`)
+
+#### `sizes` (default: `"100vw"`)
+
+#### `attributes` (default: none)
+
+Attributes are added without transformation to the generated element.
+
+You can obviously define the `alt` attribute, mandatory for accessibility, but you can also set a `title`, a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
+
+The `caption` attribute is the only one that can act differently, depending on the `figure` setting.
 
 ## Examples
 
