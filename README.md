@@ -40,8 +40,6 @@ cloudinary:
   verbose: true
 ```
 
-#### `auto`
-
 #### `verbose`
 
 
@@ -79,13 +77,14 @@ cloudinary:
 
 This is the Liquid tag syntax:
 
-```Liquid
+```liquid
 {% cloudinary [preset] path/to/img.jpg [attr="value"] %}
 ```
 
 ## Examples
 
-```Liquid
+```liquid
 {% cloudinary image1.jpg alt="alternate" %}
 {% cloudinary onethird image2.jpg alt="other" title="yet another one" %}
 ```
+
