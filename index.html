@@ -30,9 +30,9 @@
 <div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary [preset] path/to/img.jpg [attr="value"] %}</span></pre></div>
 
 <h2>
-<a id="using-jekyll-cloudinary" class="anchor" href="#using-jekyll-cloudinary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Jekyll Cloudinary</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-<p><a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Sign up for free on Cloudinary</a>. The free account should be enough for mosts blogs.</p>
+<p><a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Sign up for free on Cloudinary</a>. The free account should be enough for most blogs.</p>
 
 <p>Add <code>gem 'jekyll-cloudinary'</code> to your <code>Gemfile</code> and run <code>bundle update</code> to install the gem.</p>
 
@@ -62,8 +62,17 @@
   <span class="pl-s"><span class="pl-ent">verbose:</span> <span class="pl-c1">true</span></span></pre></div>
 
 <h4>
-<a id="verbose" class="anchor" href="#verbose" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>verbose</code>
-</h4>
+<a id="verbose-default-false" class="anchor" href="#verbose-default-false" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>verbose</code> (default: <code>false</code>)</h4>
+
+<p>When set to <code>true</code>, this setting will show messages in the console when something goes wrong, such as:</p>
+
+<pre><code>[Cloudinary] Couldn't find this image to check its width: /path/to/jekyll/_site/assets/img.jpg
+</code></pre>
+
+<p>or</p>
+
+<pre><code>[Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
+</code></pre>
 
 <h3>
 <a id="optional-but-highly-recommended-presets" class="anchor" href="#optional-but-highly-recommended-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional (but highly recommended) presets</h3>
@@ -92,10 +101,14 @@
 
 <p>To get this HTML:</p>
 
+<p>There is a true default default preset, but you're strongly encouraged to define your own default preset.</p>
+
 <h4>
 <a id="additional-presets" class="anchor" href="#additional-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional presets</h4>
 
-<p>You can add other presets if you need several image sizes in your posts, here is an example for images that take only one third of the post width:</p>
+<p>You can add other presets if you need several image sizes in your posts.</p>
+
+<p>Here is an example for images that take only one third of the post width:</p>
 
 <div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
   …
@@ -107,33 +120,61 @@
       <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
       <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 17rem, 30vw<span class="pl-pds">"</span></span></span>
       <span class="pl-s"><span class="pl-ent">attributes:</span></span>
-        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s">onethird</span></span></pre></div>
+        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s"><span class="pl-pds">"</span>one3rd<span class="pl-pds">"</span></span></span></pre></div>
+
+<p>To use this additional preset, you will have to write this in your Markdown post:</p>
+
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary onethird /assets/img.jpg %}</span></pre></div>
+
+<p>The generated element will also get a <code>class="one3rd"</code> that can be useful for example with this CSS:</p>
+
+<div class="highlight highlight-source-css"><pre><span class="pl-e">.one3rd</span> {
+  <span class="pl-c1"><span class="pl-c1">max-width</span></span>: <span class="pl-c1">33<span class="pl-k">%</span></span>;
+  <span class="pl-c1"><span class="pl-c1">float</span></span>: <span class="pl-c1">right</span>;
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-k">em</span></span> <span class="pl-c1">1<span class="pl-k">em</span></span>;
+}</pre></div>
+
+<h3>
+<a id="detailed-preset-settings" class="anchor" href="#detailed-preset-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Detailed preset settings</h3>
 
 <h4>
-<a id="min_size" class="anchor" href="#min_size" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_size</code>
-</h4>
+<a id="figure-default-auto" class="anchor" href="#figure-default-auto" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>figure</code> (default: <code>auto</code>)</h4>
+
+<p>This setting lets you decide what to do when there is a <code>caption</code> attribute in the Cloudinary Liquid tag.</p>
+
+<p>The value can be:</p>
+
+<ul>
+<li>
+<code>auto</code> (default): will generate a <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> only if there's a caption</li>
+<li>
+<code>never</code>: will always generate a <code>&lt;img&gt;</code>, losing the caption</li>
+<li>
+<code>always</code>: will always generate a <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>, even if there's no <code>caption</code> attribute</li>
+</ul>
+
+<p>If a <code>&lt;figure&gt;</code> is generated and there are attributes in the Liquid tag, they are added to the <code>&lt;img&gt;</code> if they are <code>alt</code> or <code>title</code>, or to the <code>&lt;figure&gt;</code>.</p>
 
 <h4>
-<a id="max_size" class="anchor" href="#max_size" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_size</code>
-</h4>
+<a id="min_size-default-320" class="anchor" href="#min_size-default-320" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_size</code> (default: <code>320</code>)</h4>
 
 <h4>
-<a id="steps" class="anchor" href="#steps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>steps</code>
-</h4>
+<a id="max_size-default-1200" class="anchor" href="#max_size-default-1200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_size</code> (default: <code>1200</code>)</h4>
 
 <h4>
-<a id="sizes" class="anchor" href="#sizes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>sizes</code>
-</h4>
+<a id="steps-default-5" class="anchor" href="#steps-default-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>steps</code> (default: <code>5</code>)</h4>
 
 <h4>
-<a id="attributes" class="anchor" href="#attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>attributes</code>
-</h4>
+<a id="sizes-default-100vw" class="anchor" href="#sizes-default-100vw" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>sizes</code> (default: <code>"100vw"</code>)</h4>
 
-<h2>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+<h4>
+<a id="attributes-default-none" class="anchor" href="#attributes-default-none" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>attributes</code> (default: none)</h4>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary image1.jpg alt="alternate" %}</span>
-<span class="pl-s1">{% cloudinary onethird image2.jpg alt="other" title="yet another one" %}</span></pre></div>
+<p>Attributes are added without transformation to the generated element.</p>
+
+<p>You can obviously define the <code>alt</code> attribute, mandatory for accessibility, but you can also set a <code>title</code>, a <code>class</code>, <code>aria-*</code> attributes for enhanced accessibility, or even <code>data-*</code> attributes you would like to use later with CSS or JavaScript.</p>
+
+<p>The <code>caption</code> attribute is the only one that can act differently, depending on the <code>figure</code> setting.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/nhoizey/jekyll-cloudinary">Jekyll Cloudinary Liquid tag</a> is maintained by <a href="https://github.com/nhoizey">nhoizey</a>.</span>
