@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Jekyll Cloudinary Liquid tag by nhoizey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Jekyll Cloudinary Liquid tag</h1>
+      <h2 class="project-tagline">Liquid tag for Jekyll to use Cloudinary for optimized responsive posts images.</h2>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><code>jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to ease the use of <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for responsive images in your Markdown/<a href="http://kramdown.gettalong.org/">Kramdown</a> posts.</p>
+
+<p>It builds the HTML for responsive images in the posts, using the <code>srcset</code> and <code>sizes</code> attributes for the <code>&lt;img /&gt;</code> tag (see <a href="https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density">the "varying size and density" section of this post by Jake Archibald</a> if this is new for you). URLs in the <code>srcset</code> are cloudinary URLs that <a href="http://cloudinary.com/features#fetch">fetch on-the-fly</a> the post's images and resizes them to several sizes.</p>
+
+<p>You are in full control of the number of generated images and their size, and the <code>sizes</code> attribute that helps the browser decide which image to download. See the complete configuration options for details.</p>
+
+<p>Here is the general syntax of this Liquid tag:</p>
+
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary [preset] path/to/img.jpg [attr="value"] %}</span></pre></div>
+
+<h2>
+<a id="using-jekyll-cloudinary" class="anchor" href="#using-jekyll-cloudinary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Jekyll Cloudinary</h2>
+
+<p><a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Sign up for free on Cloudinary</a>. The free account should be enough for mosts blogs.</p>
+
+<p>Add <code>gem 'jekyll-cloudinary'</code> to your <code>Gemfile</code> and run <code>bundle update</code> to install the gem.</p>
+
+<p>Add <code>jekyll-cloudinary</code> to your <code>_config.yml</code> like the following:</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">gems:</span></span>
+  <span class="pl-s">- <span class="pl-s">jekyll-cloudinary</span></span></pre></div>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<h3>
+<a id="mandatory-settings" class="anchor" href="#mandatory-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mandatory settings</h3>
+
+<p>Add <code>cloudinary</code> to your <code>_config.yml</code> and your Cloudinary "Cloud name" (find it in your <a href="https://cloudinary.com/console">Cloudinary dashboard</a>):</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
+  <span class="pl-s"><span class="pl-ent">cloud_name:</span> <span class="pl-s">&lt;put here your Cloudinary "Cloud name"&gt;</span></span></pre></div>
+
+<h3>
+<a id="optional-global-settings" class="anchor" href="#optional-global-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional global settings</h3>
+
+<p>You can now define some global settings</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
+  …
+  <span class="pl-s"><span class="pl-ent">verbose:</span> <span class="pl-c1">true</span></span></pre></div>
+
+<h4>
+<a id="verbose" class="anchor" href="#verbose" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>verbose</code>
+</h4>
+
+<h3>
+<a id="optional-but-highly-recommended-presets" class="anchor" href="#optional-but-highly-recommended-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional (but highly recommended) presets</h3>
+
+<p>You can now define the presets you need for your posts' images, starting with the default one:</p>
+
+<h4>
+<a id="default-preset" class="anchor" href="#default-preset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default preset</h4>
+
+<p>The default preset is the one you don't even have to mention when using the Liquid tag, and that will be used if a preset you use in the tag doesn't exist.</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
+  …
+  <span class="pl-s"><span class="pl-ent">presets:</span></span>
+    <span class="pl-s"><span class="pl-ent">default:</span></span>
+      <span class="pl-c1"><span class="pl-ent">min_size:</span> 320</span>
+      <span class="pl-c1"><span class="pl-ent">max_size:</span> 1600</span>
+      <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
+      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span></span></pre></div>
+
+<p>This preset will generate five images 320 to 1600 pixels wide in the <code>srcset</code> and define <code>sizes</code> as <code>"(min-width: 50rem) 50rem, 90vw"</code>.</p>
+
+<p>With this preset, you only have to write this in your Markdown post:</p>
+
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary /assets/img.jpg %}</span></pre></div>
+
+<p>To get this HTML:</p>
+
+<h4>
+<a id="additional-presets" class="anchor" href="#additional-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional presets</h4>
+
+<p>You can add other presets if you need several image sizes in your posts, here is an example for images that take only one third of the post width:</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
+  …
+  <span class="pl-s"><span class="pl-ent">presets:</span></span>
+    …
+    <span class="pl-s"><span class="pl-ent">onethird:</span></span>
+      <span class="pl-c1"><span class="pl-ent">min_size:</span> 110</span>
+      <span class="pl-c1"><span class="pl-ent">max_size:</span> 535</span>
+      <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
+      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 17rem, 30vw<span class="pl-pds">"</span></span></span>
+      <span class="pl-s"><span class="pl-ent">attributes:</span></span>
+        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s">onethird</span></span></pre></div>
+
+<h4>
+<a id="min_size" class="anchor" href="#min_size" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_size</code>
+</h4>
+
+<h4>
+<a id="max_size" class="anchor" href="#max_size" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_size</code>
+</h4>
+
+<h4>
+<a id="steps" class="anchor" href="#steps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>steps</code>
+</h4>
+
+<h4>
+<a id="sizes" class="anchor" href="#sizes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>sizes</code>
+</h4>
+
+<h4>
+<a id="attributes" class="anchor" href="#attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>attributes</code>
+</h4>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary image1.jpg alt="alternate" %}</span>
+<span class="pl-s1">{% cloudinary onethird image2.jpg alt="other" title="yet another one" %}</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nhoizey/jekyll-cloudinary">Jekyll Cloudinary Liquid tag</a> is maintained by <a href="https://github.com/nhoizey">nhoizey</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
