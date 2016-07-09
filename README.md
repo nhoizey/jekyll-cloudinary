@@ -14,7 +14,7 @@ Here is the general syntax of this Liquid tag:
 
 ## Using Jekyll Cloudinary
 
-[Sign up for free on Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw). The free account should be enough for mosts blogs.
+[Sign up for free on Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw). The free account should be enough for most blogs.
 
 Add `gem 'jekyll-cloudinary'` to your `Gemfile` and run `bundle update` to install the gem.
 
@@ -46,8 +46,19 @@ cloudinary:
   verbose: true
 ```
 
-#### `verbose`
+#### `verbose` (default: `false`)
 
+When set to `true`, this setting will show messages in the console when something goes wrong, such as:
+
+```
+[Cloudinary] Couldn't find this image to check its width: /path/to/jekyll/_site/assets/img.jpg
+```
+
+or
+
+```
+[Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
+```
 
 ### Optional (but highly recommended) presets
 

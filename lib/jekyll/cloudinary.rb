@@ -58,8 +58,15 @@ module Jekyll
         end
 
         # Get source image natural width
-        image = Magick::Image::read(image_path).first
-        natural_width = image.columns
+        if File.exist?(image_path)
+          image = Magick::Image::read(image_path).first
+          natural_width = image.columns
+        else
+          natural_width = 100000
+          if settings['verbose']
+            puts "\n[Cloudinary] Couldn't find this image to check its width: #{image_path}"
+          end
+        end
 
         if markup[:preset]
           if settings['presets'][markup[:preset]]

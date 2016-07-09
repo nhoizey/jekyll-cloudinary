@@ -3,7 +3,7 @@ require "jekyll/cloudinary/version"
 
 Gem::Specification.new do |spec|
   spec.version = Jekyll::Cloudinary::VERSION
-  spec.homepage = "http://github.com/nhoizey/jekyll-cloudinary/"
+  spec.homepage = "https://nhoizey.github.io/jekyll-cloudinary/"
   spec.authors = ["Nicolas Hoizey"]
   spec.email = ["nicolas@hoizey.com"]
   spec.files = %W(Rakefile Gemfile README.md LICENSE) + Dir["lib/**/*"]
