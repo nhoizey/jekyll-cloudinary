@@ -87,14 +87,27 @@ This preset will generate five images 320 to 1600 pixels wide in the `srcset` an
 With this preset, you only have to write this in your Markdown post:
 
 ```liquid
-{% cloudinary /assets/img.jpg %}
+{% cloudinary /assets/img.jpg alt="beautiful!" %}
 ```
 
 To get this HTML:
 
+```html
+<img
+  src="https://nicolas-hoizey.com/assets/img.jpg"
+  srcset="
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_960,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1280,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1600,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    "
+  sizes="(min-width: 50rem) 50rem, 90vw"
+  alt="beautiful!"
+/>
+```
 
-
-There is a true default default preset, but you're strongly encouraged to define your own default preset.
+There is a true default `default` preset, but you're strongly encouraged to define your own default preset.
 
 #### Additional presets
 
