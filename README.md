@@ -159,10 +159,3 @@ You can obviously define the `alt` attribute, mandatory for accessibility, but y
 
 The `caption` attribute is the only one that can act differently, depending on the `figure` setting.
 
-## Examples
-
-```liquid
-{% cloudinary image1.jpg alt="alternate" %}
-{% cloudinary onethird image2.jpg alt="other" title="yet another one" %}
-```
-
