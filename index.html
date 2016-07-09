@@ -19,7 +19,10 @@
     </section>
 
     <section class="main-content">
-      <p><code>jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to ease the use of <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for responsive images in your Markdown/<a href="http://kramdown.gettalong.org/">Kramdown</a> posts.</p>
+      <p><a href="https://badge.fury.io/rb/jekyll-cloudinary"><img src="https://badge.fury.io/rb/jekyll-cloudinary.svg" alt="Gem Version"></a>
+<a href="http://rubygems.org/gems/jekyll-cloudinary"><img src="https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat" alt="Gem Downloads"></a></p>
+
+<p><code>jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to ease the use of <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for responsive images in your Markdown/<a href="http://kramdown.gettalong.org/">Kramdown</a> posts.</p>
 
 <p>It builds the HTML for responsive images in the posts, using the <code>srcset</code> and <code>sizes</code> attributes for the <code>&lt;img /&gt;</code> tag (see <a href="https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density">the "varying size and density" section of this post by Jake Archibald</a> if this is new for you). URLs in the <code>srcset</code> are cloudinary URLs that <a href="http://cloudinary.com/features#fetch">fetch on-the-fly</a> the post's images and resizes them to several sizes.</p>
 
@@ -97,11 +100,24 @@
 
 <p>With this preset, you only have to write this in your Markdown post:</p>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary /assets/img.jpg %}</span></pre></div>
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary /assets/img.jpg alt="beautiful!" %}</span></pre></div>
 
 <p>To get this HTML:</p>
 
-<p>There is a true default default preset, but you're strongly encouraged to define your own default preset.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
+  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://nicolas-hoizey.com/assets/img.jpg<span class="pl-pds">"</span></span>
+  <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_scale,w_320,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 320w,</span>
+<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_scale,w_640,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
+<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_scale,w_960,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
+<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_scale,w_1280,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
+<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_scale,w_1600,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
+<span class="pl-s">    <span class="pl-pds">"</span></span>
+  <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span>
+  <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>beautiful!<span class="pl-pds">"</span></span>
+/&gt;</pre></div>
+
+<p>There is a true default <code>default</code> preset, but you're strongly encouraged to define your own default preset.</p>
 
 <h4>
 <a id="additional-presets" class="anchor" href="#additional-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional presets</h4>
