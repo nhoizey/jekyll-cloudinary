@@ -94,7 +94,7 @@ To get this HTML:
 
 ```html
 <img
-  src="https://nicolas-hoizey.com/assets/img.jpg"
+  src="https://<your-domain>/assets/img.jpg"
   srcset="
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
