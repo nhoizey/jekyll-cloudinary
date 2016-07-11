@@ -2,7 +2,7 @@ module Jekyll
   module Cloudinary
 
     class CloudinaryTag < Liquid::Tag
-      # priority :normal
+      priority :normal
 
       require "RMagick"
 
