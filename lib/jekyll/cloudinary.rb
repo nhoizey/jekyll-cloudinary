@@ -129,12 +129,12 @@ module Jekyll
           if settings['verbose']
             puts "[Cloudinary] Natural width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for creating any srcset version"
           end
-          srcset << "http://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/q_auto,f_auto/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/q_auto,f_auto/#{image_url} #{natural_width}w"
         else
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
-              srcset << "http://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
+              srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
             else
               if settings['verbose']
                 puts "[Cloudinary] Natural width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for creating #{width}px version"
