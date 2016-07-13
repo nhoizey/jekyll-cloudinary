@@ -42,7 +42,7 @@ module Jekyll
 
         # Extract tag segments
         markup = /^(?:(?<preset>[^\s.:\/]+)\s+)?(?<image_src>[^\s]+\.[a-zA-Z0-9]{3,4})\s*(?<html_attr>[\s\S]+)?$/.match(rendered_markup)
-        raise "Cloudinary can't read this tag. Try {% cloudinary [preset] path/to/img.jpg [attr=\"value\"] %}." unless markup
+        raise "Cloudinary can't read this tag: #{@markup}. Try {% cloudinary [preset] path/to/img.jpg [attr=\"value\"] %}." unless markup
 
         image_src = markup[:image_src]
 
