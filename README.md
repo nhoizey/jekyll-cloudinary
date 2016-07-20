@@ -3,6 +3,34 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
 [![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary)
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Presentation](#presentation)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Mandatory settings](#mandatory-settings)
+  - [Optional global settings](#optional-global-settings)
+    - [`verbose` (default: `false`)](#verbose-default-false)
+  - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
+    - [Default preset](#default-preset)
+    - [Additional presets](#additional-presets)
+  - [Detailed preset settings](#detailed-preset-settings)
+    - [`figure` (default: `auto`)](#figure-default-auto)
+    - [`min_size` (default: `320`)](#min_size-default-320)
+    - [`max_size` (default: `1200`)](#max_size-default-1200)
+    - [`steps` (default: `5`)](#steps-default-5)
+    - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
+    - [`attributes` (default: none)](#attributes-default-none)
+- [Live example](#live-example)
+- [To do](#to-do)
+- [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Presentation
+
 `jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
 
 It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post by Jake Archibald](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resizes them to several sizes.
@@ -14,9 +42,6 @@ Here is the general syntax of this Liquid tag:
 ```liquid
 {% cloudinary [preset] path/to/img.jpg [attr="value"] %}
 ```
-
-* TOC
-{:toc}
 
 ## Installation
 
