@@ -15,6 +15,9 @@ Here is the general syntax of this Liquid tag:
 {% cloudinary [preset] path/to/img.jpg [attr="value"] %}
 ```
 
+* TOC
+{:toc}
+
 ## Installation
 
 [Sign up for free on Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw). The free account should be enough for most blogs.
