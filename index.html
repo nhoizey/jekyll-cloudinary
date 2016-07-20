@@ -8,20 +8,14 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-1655999-13', 'auto');
-    ga('send', 'pageview');
-    </script>
   </head>
   <body>
     <section class="page-header">
       <h1 class="project-name">Jekyll Cloudinary Liquid tag</h1>
       <h2 class="project-tagline">Liquid tag for Jekyll to use Cloudinary for optimized responsive posts images.</h2>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
@@ -197,6 +191,127 @@
 <p>You can obviously define the <code>alt</code> attribute, mandatory for accessibility, but you can also set a <code>title</code>, a <code>class</code>, <code>aria-*</code> attributes for enhanced accessibility, or even <code>data-*</code> attributes you would like to use later with CSS or JavaScript.</p>
 
 <p>The <code>caption</code> attribute is the only one that can act differently, depending on the <code>figure</code> setting.</p>
+
+<h2>
+<a id="live-example" class="anchor" href="#live-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Live example</h2>
+
+<p>Go to this post: <a href="https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html">https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html</a>.</p>
+
+<p>The source Markdown is here: <a href="https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md">https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md</a>.</p>
+
+<p>The content is in french, yes, but look only at the images if you don't understand.</p>
+
+<p>You'll find here:</p>
+
+<ul>
+<li>2 logos floating on the right of the text (or centered on smaller screens): <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a>
+</li>
+<li>2 screenshots taking the whole width of the content: the <a href="http://cloudinary.com/pricing">Cloudinary pricing table</a>, and <a href="https://www.dareboost.com/en/home">Dareboost</a>'s performance monitoring graph</li>
+</ul>
+
+<p>These image types need different settings to deal with different sizes and position:</p>
+
+<ul>
+<li>screenshot always use the full content width, if they're wide enough</li>
+<li>logos are centered and take one half of the content width on small screens, and are floated and take one fourth of the content width on larger screens</li>
+</ul>
+
+<p>This is how I use the Cloudinary Liquid tag for the Cloudinary logo and prices table screenshot:</p>
+
+<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary logo /assets/logos/cloudinary.png alt="Logo de Cloudinary" %}</span>
+<span class="pl-s1">{% cloudinary cloudinary-pricing.png alt="Les tarifs de Cloudinary" caption="Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse" %}</span></pre></div>
+
+<p>The only difference is that I explicitly use the <code>logo</code> preset for the logo. The other image uses the <code>default</code> preset.</p>
+
+<p>Here is the necessary configuration for this:</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
+  <span class="pl-s"><span class="pl-ent">cloud_name:</span> <span class="pl-s">…</span></span>
+  <span class="pl-s"><span class="pl-ent">verbose:</span> <span class="pl-c1">false</span></span>
+  <span class="pl-s"><span class="pl-ent">presets:</span></span>
+    <span class="pl-s"><span class="pl-ent">default:</span></span>
+      <span class="pl-c1"><span class="pl-ent">min_width:</span> 320</span>
+      <span class="pl-c1"><span class="pl-ent">max_width:</span> 1600</span>
+      <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
+      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">'</span></span></span>
+      <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">always</span></span>
+    <span class="pl-s"><span class="pl-ent">logo:</span></span>
+      <span class="pl-c1"><span class="pl-ent">min_width:</span> 80</span>
+      <span class="pl-c1"><span class="pl-ent">max_width:</span> 400</span>
+      <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
+      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 13rem, (min-width: 40rem) 25vw, 45vw<span class="pl-pds">'</span></span></span>
+      <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">never</span></span>
+      <span class="pl-s"><span class="pl-ent">attributes:</span></span>
+        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s">logo</span></span></pre></div>
+
+<p>It generates these HTML fragments (pretty printed here), for the logo:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
+  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://nicolas-hoizey.com/assets/logos/cloudinary.png<span class="pl-pds">"</span></span>
+  <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_scale,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,</span>
+<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_scale,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,</span>
+<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_scale,w_400,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 400w<span class="pl-pds">"</span></span>
+  <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">    (min-width: 50rem) 13rem,</span>
+<span class="pl-s">    (min-width: 40rem) 25vw,</span>
+<span class="pl-s">    45vw<span class="pl-pds">"</span></span>
+  <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>logo<span class="pl-pds">"</span></span>
+  <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Logo de Cloudinary<span class="pl-pds">"</span></span>
+/&gt;</pre></div>
+
+<p>And for the screenshot:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">figure</span>&gt;
+  &lt;<span class="pl-ent">img</span>
+    <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png<span class="pl-pds">"</span></span>
+    <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,</span>
+<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,</span>
+<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w<span class="pl-pds">"</span></span>
+    <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">      (min-width: 50rem) 50rem,</span>
+<span class="pl-s">      90vw<span class="pl-pds">"</span></span>
+    <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Les tarifs de Cloudinary<span class="pl-pds">"</span></span>
+  /&gt;
+  &lt;<span class="pl-ent">figcaption</span>&gt;Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse&lt;/<span class="pl-ent">figcaption</span>&gt;
+&lt;/<span class="pl-ent">figure</span>&gt;</pre></div>
+
+<p>There are only 3 version in the <code>srcset</code> here because 2 of the 5 sizes expected are larger than the source image.</p>
+
+<p>And here are the relevant parts of the accompanying CSS (in Sass form):</p>
+
+<div class="highlight highlight-source-sass"><pre><span class="pl-k">article</span> {
+  <span class="pl-k">figure</span>, <span class="pl-k">img</span> {
+    <span class="pl-c1">margin</span>:<span class="pl-c1"> 2</span><span class="pl-k">em</span> <span class="pl-c1">auto</span>;
+    <span class="pl-c1">display</span>: <span class="pl-c1">block</span>;
+    <span class="pl-c1">max-width</span>:<span class="pl-c1"> 100</span><span class="pl-k">%</span>;
+    <span class="pl-c1">height</span>: <span class="pl-c1">auto</span>;
+  }
+}
+
+<span class="pl-e">.logo</span> {
+  <span class="pl-c1">display</span>: <span class="pl-c1">block</span>;
+  <span class="pl-c1">margin</span>:<span class="pl-c1"> 1</span><span class="pl-k">em</span> <span class="pl-c1">auto</span>;
+  <span class="pl-c1">max-width</span>:<span class="pl-c1"> 50</span><span class="pl-k">%</span>;
+  <span class="pl-c1">height</span>: <span class="pl-c1">auto</span>;
+
+  <span class="pl-k">@media </span>(<span class="pl-c1">min-width</span>:<span class="pl-c1"> 40</span><span class="pl-k">em</span>) {
+    <span class="pl-c1">max-width</span>:<span class="pl-c1"> 25</span><span class="pl-k">%</span>;
+    <span class="pl-c1">float</span>: <span class="pl-c1">right</span>;
+    <span class="pl-c1">margin</span>:<span class="pl-c1"> 0 0 1</span><span class="pl-k">em</span><span class="pl-c1"> 1</span><span class="pl-k">em</span>;
+  }
+}</pre></div>
+
+<h2>
+<a id="to-do" class="anchor" href="#to-do" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>To do</h2>
+
+<p>There are already <a href="https://github.com/nhoizey/jekyll-cloudinary/issues">a few issues for things that should be added to the plugin</a>, feel free to add your ideas!</p>
+
+<h2>
+<a id="do-you-use-the-plugin-on-a-live-site" class="anchor" href="#do-you-use-the-plugin-on-a-live-site" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Do you use the plugin on a live site?</h2>
+
+<p>Please let me know on Twitter: <a href="https://twitter.com/nhoizey">@nhoizey</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/nhoizey/jekyll-cloudinary">Jekyll Cloudinary Liquid tag</a> is maintained by <a href="https://github.com/nhoizey">nhoizey</a>.</span>
