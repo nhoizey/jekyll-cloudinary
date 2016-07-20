@@ -3,11 +3,22 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
 [![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary)
 
+`jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
+
+It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post by Jake Archibald](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resizes them to several sizes.
+
+You are in full control of the number of generated images and their size, and the `sizes` attribute that helps the browser decide which image to download. See the complete configuration options for details.
+
+Here is the general syntax of this Liquid tag:
+
+```liquid
+{% cloudinary [preset] path/to/img.jpg [attr="value"] %}
+```
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of contents
 
-- [Presentation](#presentation)
 - [Installation](#installation)
 - [Configuration](#configuration)
   - [Mandatory settings](#mandatory-settings)
@@ -28,20 +39,6 @@
 - [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Presentation
-
-`jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
-
-It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post by Jake Archibald](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resizes them to several sizes.
-
-You are in full control of the number of generated images and their size, and the `sizes` attribute that helps the browser decide which image to download. See the complete configuration options for details.
-
-Here is the general syntax of this Liquid tag:
-
-```liquid
-{% cloudinary [preset] path/to/img.jpg [attr="value"] %}
-```
 
 ## Installation
 
