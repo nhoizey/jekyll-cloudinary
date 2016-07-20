@@ -18,7 +18,7 @@ module Jekyll
           "max_width" => 1200,
           "steps" => 5,
           "sizes" => "100vw",
-          "caption" => "auto",
+          "figure" => "auto",
           "attributes" => { },
           "verbose" => false
         }
