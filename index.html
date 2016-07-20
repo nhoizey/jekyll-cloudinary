@@ -8,15 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-1655999-13', 'auto');
-    ga('send', 'pageview');
-    </script>  </head>
+  </head>
   <body>
     <section class="page-header">
       <h1 class="project-name">Jekyll Cloudinary Liquid tag</h1>
@@ -29,6 +21,57 @@
     <section class="main-content">
       <p><a href="https://badge.fury.io/rb/jekyll-cloudinary"><img src="https://badge.fury.io/rb/jekyll-cloudinary.svg" alt="Gem Version"></a>
 <a href="http://rubygems.org/gems/jekyll-cloudinary"><img src="https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat" alt="Gem Downloads"></a></p>
+
+
+
+
+
+<ul>
+<li><a href="#presentation">Presentation</a></li>
+<li><a href="#installation">Installation</a></li>
+<li>
+<a href="#configuration">Configuration</a>
+
+<ul>
+<li><a href="#mandatory-settings">Mandatory settings</a></li>
+<li>
+<a href="#optional-global-settings">Optional global settings</a>
+
+<ul>
+<li><a href="#verbose-default-false"><code>verbose</code> (default: <code>false</code>)</a></li>
+</ul>
+</li>
+<li>
+<a href="#optional-but-highly-recommended-presets">Optional (but highly recommended) presets</a>
+
+<ul>
+<li><a href="#default-preset">Default preset</a></li>
+<li><a href="#additional-presets">Additional presets</a></li>
+</ul>
+</li>
+<li>
+<a href="#detailed-preset-settings">Detailed preset settings</a>
+
+<ul>
+<li><a href="#figure-default-auto"><code>figure</code> (default: <code>auto</code>)</a></li>
+<li><a href="#min_size-default-320"><code>min_size</code> (default: <code>320</code>)</a></li>
+<li><a href="#max_size-default-1200"><code>max_size</code> (default: <code>1200</code>)</a></li>
+<li><a href="#steps-default-5"><code>steps</code> (default: <code>5</code>)</a></li>
+<li><a href="#sizes-default-100vw"><code>sizes</code> (default: <code>"100vw"</code>)</a></li>
+<li><a href="#attributes-default-none"><code>attributes</code> (default: none)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#live-example">Live example</a></li>
+<li><a href="#to-do">To do</a></li>
+<li><a href="#do-you-use-the-plugin-on-a-live-site">Do you use the plugin on a live site?</a></li>
+</ul>
+
+
+
+<h2>
+<a id="presentation" class="anchor" href="#presentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Presentation</h2>
 
 <p><code>jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to ease the use of <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for responsive images in your Markdown/<a href="http://kramdown.gettalong.org/">Kramdown</a> posts.</p>
 
