@@ -131,16 +131,22 @@ module Jekyll
           end
           srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/q_auto,f_auto/#{image_url} #{natural_width}w"
         else
+          missed_sizes = []
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
               srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
             else
-              if settings['verbose']
-                Jekyll.logger.warn('Cloudinary', "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for #{width}px version")
-              end
+              missed_sizes.push(width)
             end
           end
+            if missed_sizes.length > 0
+              srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
+              if settings['verbose']
+                Jekyll.logger.warn('[Cloudinary]', "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for #{missed_sizes.join('px, ')}px version#{missed_sizes.length > 1 ? 's' : ''}")
+              end
+            end
+
         end
         srcset_string = srcset.join(",\n")
 
