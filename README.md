@@ -265,6 +265,8 @@ It generates these HTML fragments (pretty printed here), for the logo:
     45vw"
   class="logo"
   alt="Logo de Cloudinary"
+  width="480"
+  height="350"
 />
 ```
 
@@ -277,17 +279,18 @@ And for the screenshot:
     srcset="
       https://res.cloudinary.com/nho/image/fetch/c_scale,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,
       https://res.cloudinary.com/nho/image/fetch/c_scale,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,
-      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w"
-    sizes="
-      (min-width: 50rem) 50rem,
-      90vw"
+      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,
+      https://res.cloudinary.com/nho/image/fetch/c_scale,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w"
+    sizes="(min-width: 50rem) 50rem, 90vw"
     alt="Les tarifs de Cloudinary"
+    width="1208"
+    height="561"
   />
   <figcaption>Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse</figcaption>
 </figure>
 ```
 
-There are only 3 version in the `srcset` here because 2 of the 5 sizes expected are larger than the source image.
+There are only 4 version in the `srcset` here because 2 of the 5 expected sizes are larger than the source image, and are replaced by one using the native source image width.
 
 And here are the relevant parts of the accompanying CSS (in Sass form):
 
