@@ -129,7 +129,7 @@ module Jekyll
           if settings['verbose']
             Jekyll.logger.warn('Cloudinary', "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for ANY srcset version")
           end
-          srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/q_auto,f_auto/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
         else
           missed_sizes = []
           (1..steps).each do |factor|
