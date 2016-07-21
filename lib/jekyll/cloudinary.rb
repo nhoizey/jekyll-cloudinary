@@ -43,7 +43,7 @@ module Jekyll
         # Extract tag segments
         markup = /^(?:(?<preset>[^\s.:\/]+)\s+)?(?<image_src>[^\s]+\.[a-zA-Z0-9]{3,4})\s*(?<html_attr>[\s\S]+)?$/.match(rendered_markup)
         if !markup
-          Jekyll.logger.abort_with('Cloudinary', "Can't read this tag: #{@markup}")
+          Jekyll.logger.abort_with('[Cloudinary]', "Can't read this tag: #{@markup}")
         end
 
         image_src = markup[:image_src]
@@ -64,7 +64,7 @@ module Jekyll
           natural_width = image.columns
         else
           natural_width = 1000000
-          Jekyll.logger.warn('Cloudinary', "Couldn't find this image to check its width: #{image_path}")
+          Jekyll.logger.warn('[Cloudinary]', "Couldn't find this image to check its width: #{image_path}")
         end
 
         if markup[:preset]
@@ -72,7 +72,7 @@ module Jekyll
             preset = preset.merge(settings['presets'][markup[:preset]])
           else
             if settings['verbose']
-              Jekyll.logger.warn('Cloudinary', "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, using the default one")
+              Jekyll.logger.warn('[Cloudinary]', "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, using the default one")
             end
           end
         end
@@ -127,7 +127,7 @@ module Jekyll
 
         if natural_width < min_width
           if settings['verbose']
-            Jekyll.logger.warn('Cloudinary', "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for ANY srcset version")
+            Jekyll.logger.warn('[Cloudinary]', "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context['page'].path} not enough for ANY srcset version")
           end
           srcset << "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
         else
