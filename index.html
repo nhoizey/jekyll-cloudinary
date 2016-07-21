@@ -8,23 +8,14 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-1655999-13', 'auto');
-    ga('send', 'pageview');
-    </script>
-    
   </head>
   <body>
     <section class="page-header">
       <h1 class="project-name">Jekyll Cloudinary Liquid tag</h1>
       <h2 class="project-tagline">Liquid tag for Jekyll to use Cloudinary for optimized responsive posts images.</h2>
       <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
@@ -320,6 +311,8 @@
 <span class="pl-s">    45vw<span class="pl-pds">"</span></span>
   <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>logo<span class="pl-pds">"</span></span>
   <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Logo de Cloudinary<span class="pl-pds">"</span></span>
+  <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>480<span class="pl-pds">"</span></span>
+  <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>350<span class="pl-pds">"</span></span>
 /&gt;</pre></div>
 
 <p>And for the screenshot:</p>
@@ -330,16 +323,17 @@
     <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
 <span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,</span>
 <span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,</span>
-<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w<span class="pl-pds">"</span></span>
-    <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
-<span class="pl-s">      (min-width: 50rem) 50rem,</span>
-<span class="pl-s">      90vw<span class="pl-pds">"</span></span>
+<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,</span>
+<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_scale,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w<span class="pl-pds">"</span></span>
+    <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span>
     <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Les tarifs de Cloudinary<span class="pl-pds">"</span></span>
+    <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>1208<span class="pl-pds">"</span></span>
+    <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>561<span class="pl-pds">"</span></span>
   /&gt;
   &lt;<span class="pl-ent">figcaption</span>&gt;Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse&lt;/<span class="pl-ent">figcaption</span>&gt;
 &lt;/<span class="pl-ent">figure</span>&gt;</pre></div>
 
-<p>There are only 3 version in the <code>srcset</code> here because 2 of the 5 sizes expected are larger than the source image.</p>
+<p>There are only 4 version in the <code>srcset</code> here because 2 of the 5 expected sizes are larger than the source image, and are replaced by one using the native source image width.</p>
 
 <p>And here are the relevant parts of the accompanying CSS (in Sass form):</p>
 
