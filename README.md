@@ -200,6 +200,8 @@ You can obviously define the `alt` attribute, mandatory for accessibility, but y
 
 The `caption` attribute is the only one that can act differently, depending on the `figure` setting.
 
+`alt`, `title` and `caption` attributes can contain Markdown.
+
 ## Live example
 
 Go to this post: [https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html](https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html).

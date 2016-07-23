@@ -28,6 +28,9 @@ module Jekyll
         url = site.config['url']
         settings = site.config['cloudinary']
 
+        # Get Markdown converter
+        markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
+
         preset_user_defaults = {}
         if settings['presets']
           if settings['presets']['default']
@@ -107,18 +110,18 @@ module Jekyll
 
         # Deal with the "caption" attribute as a true <figcaption>
         if html_attr['caption']
-          caption = html_attr['caption']
+          caption = markdown_converter.convert(html_attr['caption'])
           html_attr.delete('caption')
         end
 
         # alt and title attributes should go only to the <img> even when there is a caption
         img_attr = ""
         if html_attr['alt']
-          img_attr << " alt=\"#{html_attr['alt']}\""
+          img_attr << " alt=\"#{markdown_converter.convert(html_attr['alt'])}\""
           html_attr.delete('alt')
         end
         if html_attr['title']
-          img_attr << " title=\"#{html_attr['title']}\""
+          img_attr << " title=\"#{markdown_converter.convert(html_attr['title'])}\""
           html_attr.delete('title')
         end
 
