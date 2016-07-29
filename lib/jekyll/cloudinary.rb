@@ -65,13 +65,9 @@ module Jekyll
         if File.exist?(image_path)
           image = Magick::Image::read(image_path).first
           natural_width = image.columns
-          natural_height = image.rows
-          width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings['cloud_name']}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url}"
         else
           natural_width = 100000
-          natural_height = 100000
-          width_height = ""
           Jekyll.logger.warn('[Cloudinary]', "Couldn't find this image to check its width: #{image_path}. Try to run Jekyll build a second time.")
           fallback_url = "#{image_url}"
         end
@@ -161,9 +157,9 @@ module Jekyll
 
         # preset['figure'] can be 'never', 'auto' or 'always'
         if (caption || preset['figure'] == 'always') && preset['figure'] != 'never'
-          "\n<figure #{attr_string}>\n<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{img_attr} #{width_height} />\n<figcaption>#{caption}</figcaption>\n</figure>\n"
+          "\n<figure #{attr_string}>\n<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{img_attr} />\n<figcaption>#{caption}</figcaption>\n</figure>\n"
         else
-          "<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{attr_string} #{img_attr} #{width_height} />"
+          "<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{attr_string} #{img_attr} />"
         end
       end
     end
