@@ -67,18 +67,16 @@ module Jekyll
           natural_width = image.columns
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url}"
         else
-          natural_width = 100000
+          natural_width = 100_000
           Jekyll.logger.warn("[Cloudinary]", "Couldn't find this image to check its width: #{image_path}. Try to run Jekyll build a second time.")
-          fallback_url = "#{image_url}"
+          fallback_url = image_url
         end
 
         if markup[:preset]
           if settings["presets"][markup[:preset]]
             preset = preset.merge(settings["presets"][markup[:preset]])
-          else
-            if settings["verbose"]
-              Jekyll.logger.warn("[Cloudinary]", "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, using the default one")
-            end
+          elsif settings["verbose"]
+            Jekyll.logger.warn("[Cloudinary]", "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, using the default one")
           end
         end
 
@@ -121,7 +119,7 @@ module Jekyll
           html_attr.delete("title")
         end
 
-        attr_string = html_attr.map { |a,v| "#{a}=\"#{v}\"" }.join(' ')
+        attr_string = html_attr.map { |a, v| "#{a}=\"#{v}\"" }.join(" ")
 
         srcset = []
         steps = preset["steps"].to_i
