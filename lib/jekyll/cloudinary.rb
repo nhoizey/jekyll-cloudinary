@@ -65,7 +65,7 @@ module Jekyll
         if File.exist?(image_path)
           image = Magick::Image::read(image_path).first
           natural_width = image.columns
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url}"
+          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url}"
         else
           natural_width = 100000
           Jekyll.logger.warn("[Cloudinary]", "Couldn't find this image to check its width: #{image_path}. Try to run Jekyll build a second time.")
@@ -134,19 +134,19 @@ module Jekyll
           if settings["verbose"]
             Jekyll.logger.warn("[Cloudinary]", "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context["page"].path} not enough for ANY srcset version")
           end
-          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
         else
           missed_sizes = []
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
-              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_scale,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
+              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
             else
               missed_sizes.push(width)
             end
           end
           if missed_sizes.length > 0
-            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_scale,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
+            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
             if settings["verbose"]
               Jekyll.logger.warn("[Cloudinary]", "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context["page"].path} not enough for #{missed_sizes.join("px, ")}px version#{missed_sizes.length > 1 ? "s" : ""}")
             end
