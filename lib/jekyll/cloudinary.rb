@@ -14,13 +14,13 @@ module Jekyll
 
         # Default settings
         preset_defaults = {
-          "min_width" => 320,
-          "max_width" => 1200,
-          "steps" => 5,
-          "sizes" => "100vw",
-          "figure" => "auto",
-          "attributes" => { },
-          "verbose" => false
+          "min_width"  => 320,
+          "max_width"  => 1200,
+          "steps"      => 5,
+          "sizes"      => "100vw",
+          "figure"     => "auto",
+          "attributes" => {},
+          "verbose"    => false
         }
 
         # Settings
