@@ -167,7 +167,7 @@ module Jekyll
               missed_sizes.push(width)
             end
           end
-          if missed_sizes.length.empty?
+          if missed_sizes.empty?
             srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
             if settings["verbose"]
               Jekyll.logger.warn(
