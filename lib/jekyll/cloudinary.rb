@@ -2,7 +2,6 @@ module Jekyll
   module Cloudinary
 
     class CloudinaryTag < Liquid::Tag
-
       require "RMagick"
 
       def initialize(tag_name, markup, tokens)
@@ -11,7 +10,6 @@ module Jekyll
       end
 
       def render(context)
-
         # Default settings
         preset_defaults = {
           "min_width"  => 320,
@@ -41,24 +39,38 @@ module Jekyll
         preset = preset_defaults.merge(preset_user_defaults)
 
         # Render any liquid variables in tag arguments and unescape template code
-        rendered_markup = Liquid::Template.parse(@markup).render(context).gsub(/\\\{\\\{|\\\{\\%/, '\{\{' => '{{', '\{\%' => '{%')
+        rendered_markup = Liquid::Template
+          .parse(@markup)
+          .render(context)
+          .gsub(%r!\\\{\\\{|\\\{\\%!, '\{\{' => '{{', '\{\%' => '{%')
 
         # Extract tag segments
-        markup = /^(?:(?<preset>[^\s.:\/]+)\s+)?(?<image_src>[^\s]+\.[a-zA-Z0-9]{3,4})\s*(?<html_attr>[\s\S]+)?$/.match(rendered_markup)
-        if !markup
+        markup =
+          %r!^(?:(?<preset>[^\s.:\/]+)\s+)?(?<image_src>[^\s]+\.[a-zA-Z0-9]{3,4})\s*(?<html_attr>[\s\S]+)?$!
+            .match(rendered_markup)
+
+        unless markup
           Jekyll.logger.abort_with("[Cloudinary]", "Can't read this tag: #{@markup}")
         end
 
         image_src = markup[:image_src]
 
         # Build source image URL
-        is_image_path_absolute = /^\/.*$/.match(image_src)
+        is_image_path_absolute = %r!^/.*$!.match(image_src)
         if is_image_path_absolute
           image_path = File.join(site.config["destination"], image_src)
           image_url = File.join(url, image_src)
         else
-          image_path = File.join(site.config["destination"], File.dirname(context["page"].url), image_src)
-          image_url = File.join(url, File.dirname(context["page"].url), image_src)
+          image_path = File.join(
+            site.config["destination"],
+            File.dirname(context["page"].url),
+            image_src
+          )
+          image_url = File.join(
+            url,
+            File.dirname(context["page"].url),
+            image_src
+          )
         end
 
         # Get source image natural width
@@ -68,7 +80,11 @@ module Jekyll
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url}"
         else
           natural_width = 100_000
-          Jekyll.logger.warn("[Cloudinary]", "Couldn't find this image to check its width: #{image_path}. Try to run Jekyll build a second time.")
+          Jekyll.logger.warn(
+            "[Cloudinary]",
+            "Couldn't find this image to check its width: #{image_path}. \
+            Try to run Jekyll build a second time."
+          )
           fallback_url = image_url
         end
 
@@ -76,7 +92,11 @@ module Jekyll
           if settings["presets"][markup[:preset]]
             preset = preset.merge(settings["presets"][markup[:preset]])
           elsif settings["verbose"]
-            Jekyll.logger.warn("[Cloudinary]", "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, using the default one")
+            Jekyll.logger.warn(
+              "[Cloudinary]",
+              "'#{markup[:preset]}' preset for the Cloudinary plugin doesn't exist, \
+              using the default one"
+            )
           end
         end
 
@@ -87,7 +107,7 @@ module Jekyll
 
         # Process attributes
         html_attr = if markup[:html_attr]
-                      Hash[ *markup[:html_attr].scan(/(?<attr>[^\s="]+)(?:="(?<value>[^"]+)")?\s?/).flatten ]
+                      Hash[ *markup[:html_attr].scan(%r!(?<attr>[^\s="]+)(?:="(?<value>[^"]+)")?\s?!).flatten ]
                     else
                       {}
                     end
@@ -130,7 +150,11 @@ module Jekyll
 
         if natural_width < min_width
           if settings["verbose"]
-            Jekyll.logger.warn("[Cloudinary]", "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context["page"].path} not enough for ANY srcset version")
+            Jekyll.logger.warn(
+              "[Cloudinary]",
+              "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) \
+              in #{context["page"].path} not enough for ANY srcset version"
+            )
           end
           srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
         else
@@ -143,10 +167,15 @@ module Jekyll
               missed_sizes.push(width)
             end
           end
-          if missed_sizes.length > 0
+          if missed_sizes.length.empty?
             srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
             if settings["verbose"]
-              Jekyll.logger.warn("[Cloudinary]", "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) in #{context["page"].path} not enough for #{missed_sizes.join("px, ")}px version#{missed_sizes.length > 1 ? "s" : ""}")
+              Jekyll.logger.warn(
+                "[Cloudinary]",
+                "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) \
+                in #{context["page"].path} not enough for #{missed_sizes.join("px, ")}px \
+                version#{missed_sizes.length > 1 ? "s" : ""}"
+              )
             end
           end
         end
