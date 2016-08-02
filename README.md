@@ -5,9 +5,9 @@
 
 `jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
 
-It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post by Jake Archibald](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resizes them to several sizes.
+It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you, and why it's recommended to [not use `<picture>` most of the time](https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/)). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resize them to several sizes.
 
-You are in full control of the number of generated images and their size, and the `sizes` attribute that helps the browser decide which image to download. See the complete configuration options for details.
+You are in full control of the number of generated images and their sizes, and the `sizes` attribute that helps the browser decide which image to download. See the complete configuration options for details.
 
 Here is the general syntax of this Liquid tag:
 
@@ -42,7 +42,7 @@ Here is the general syntax of this Liquid tag:
 
 ## Installation
 
-[Sign up for free on Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw). The free account should be enough for most blogs.
+[Sign up **for free** on Cloudinary!](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) The free account should be enough for most blogs.
 
 Add `gem 'jekyll-cloudinary'` to your `Gemfile` and run `bundle update` to install the gem.
 
@@ -119,16 +119,18 @@ To get this HTML:
 
 ```html
 <img
-  src="https://<your-domain>/assets/img.jpg"
+  src="http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_480,q_auto,f_auto/https://<your-domain>/assets/img.jpg"
   srcset="
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_960,q_auto,f_auto/https://<your-domain>/assets/img.jpg 960w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1280,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1280w
-    http://res.cloudinary.com/<cloud_name>/image/fetch/c_scale,w_1600,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1600w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_960,q_auto,f_auto/https://<your-domain>/assets/img.jpg 960w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_1280,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1280w
+    http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_1600,q_auto,f_auto/https://<your-domain>/assets/img.jpg 1600w
     "
   sizes="(min-width: 50rem) 50rem, 90vw"
   alt="beautiful!"
+  width="480"
+  height="320"
 />
 ```
 
@@ -256,11 +258,11 @@ It generates these HTML fragments (pretty printed here), for the logo:
 
 ```html
 <img
-  src="https://nicolas-hoizey.com/assets/logos/cloudinary.png"
+  src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_480,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png"
   srcset="
-    https://res.cloudinary.com/nho/image/fetch/c_scale,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,
-    https://res.cloudinary.com/nho/image/fetch/c_scale,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,
-    https://res.cloudinary.com/nho/image/fetch/c_scale,w_400,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 400w"
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_400,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 400w"
   sizes="
     (min-width: 50rem) 13rem,
     (min-width: 40rem) 25vw,
@@ -277,12 +279,12 @@ And for the screenshot:
 ```html
 <figure>
   <img
-    src="https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png"
+    src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png"
     srcset="
-      https://res.cloudinary.com/nho/image/fetch/c_scale,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,
-      https://res.cloudinary.com/nho/image/fetch/c_scale,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,
-      https://res.cloudinary.com/nho/image/fetch/c_scale,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,
-      https://res.cloudinary.com/nho/image/fetch/c_scale,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w"
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w"
     sizes="(min-width: 50rem) 50rem, 90vw"
     alt="Les tarifs de Cloudinary"
     width="1208"
@@ -322,8 +324,8 @@ article {
 
 ## To do
 
-There are already [a few issues for things that should be added to the plugin](https://github.com/nhoizey/jekyll-cloudinary/issues), feel free to add your ideas!
+There are already [a few issues for bugs and things that should be added to the plugin](https://github.com/nhoizey/jekyll-cloudinary/issues), feel free to add your ideas!
 
 ## Do you use the plugin on a live site?
 
-Please let me know on Twitter: [@nhoizey](https://twitter.com/nhoizey)
+Add it to [the "Sites" page of the wiki](https://github.com/nhoizey/jekyll-cloudinary/wiki/Sites) and please let me know on Twitter: [@nhoizey](https://twitter.com/nhoizey)
