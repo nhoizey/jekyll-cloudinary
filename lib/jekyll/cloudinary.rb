@@ -24,6 +24,7 @@ module Jekyll
         # Settings
         site = context.registers[:site]
         url = site.config["url"]
+        baseurl = site.config["baseurl"] || ""
         settings = site.config["cloudinary"]
 
         # Get Markdown converter
@@ -59,7 +60,7 @@ module Jekyll
         is_image_path_absolute = %r!^/.*$!.match(image_src)
         if is_image_path_absolute
           image_path = File.join(site.config["destination"], image_src)
-          image_url = File.join(url, image_src)
+          image_url = File.join(url, baseurl, image_src)
         else
           image_path = File.join(
             site.config["destination"],
@@ -68,6 +69,7 @@ module Jekyll
           )
           image_url = File.join(
             url,
+            baseurl,
             File.dirname(context["page"].url),
             image_src
           )
