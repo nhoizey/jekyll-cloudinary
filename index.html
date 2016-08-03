@@ -1,393 +1,393 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Jekyll Cloudinary Liquid tag by nhoizey</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   
-    ga('create', 'UA-1655999-13', 'auto');
-    ga('send', 'pageview');
-    </script>
-  </head>
+  <head>
+  <meta charset="UTF-8">
+  <title>Jekyll Cloudinary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/jekyll-cloudinary/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/jekyll-cloudinary/css/cayman.css">
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1655999-13', 'auto');
+  ga('send', 'pageview');
+  </script>
+</head>
+
   <body>
     <section class="page-header">
-      <h1 class="project-name">Jekyll Cloudinary Liquid tag</h1>
-      <h2 class="project-tagline">Liquid tag for Jekyll to use Cloudinary for optimized responsive posts images.</h2>
-      <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
-    </section>
+  <h1 class="project-name">Jekyll Cloudinary</h1>
+  <h2 class="project-tagline">A Jekyll plugin adding a Liquid tag to use Cloudinary for optimized responsive posts images</h2>
+  <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
+</section>
 
     <section class="main-content">
-      <h1>
-<a id="jekyll-cloudinary-liquid-tag" class="anchor" href="#jekyll-cloudinary-liquid-tag" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Jekyll Cloudinary Liquid tag</h1>
+      
+      <p><a href="https://badge.fury.io/rb/jekyll-cloudinary"><img src="https://badge.fury.io/rb/jekyll-cloudinary.svg" alt="Gem Version" /></a>
+<a href="http://rubygems.org/gems/jekyll-cloudinary"><img src="https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat" alt="Gem Downloads" /></a></p>
 
-<p><a href="https://badge.fury.io/rb/jekyll-cloudinary"><img src="https://badge.fury.io/rb/jekyll-cloudinary.svg" alt="Gem Version"></a>
-<a href="http://rubygems.org/gems/jekyll-cloudinary"><img src="https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat" alt="Gem Downloads"></a></p>
+<p><code class="highlighter-rouge">jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to use <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for optimized responsive posts images.</p>
 
-<p><code>jekyll-cloudinary</code> is a <a href="http://jekyllrb.com/">Jekyll</a> plugin adding a <a href="http://liquidmarkup.org">Liquid</a> tag to ease the use of <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a> for responsive images in your Markdown/<a href="http://kramdown.gettalong.org/">Kramdown</a> posts.</p>
+<p>It builds the HTML for responsive images in the posts, using the <code class="highlighter-rouge">srcset</code> and <code class="highlighter-rouge">sizes</code> attributes for the <code class="highlighter-rouge">&lt;img /&gt;</code> tag (see <a href="https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density">the “varying size and density” section of this post</a> if this is new for you, and why it’s recommended to <a href="https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/">not use <code class="highlighter-rouge">&lt;picture&gt;</code> most of the time</a>). URLs in the <code class="highlighter-rouge">srcset</code> are cloudinary URLs that <a href="http://cloudinary.com/features#fetch">fetch on-the-fly</a> the post’s images and resize them to several sizes.</p>
 
-<p>It builds the HTML for responsive images in the posts, using the <code>srcset</code> and <code>sizes</code> attributes for the <code>&lt;img /&gt;</code> tag (see <a href="https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density">the "varying size and density" section of this post</a> if this is new for you, and why it's recommended to <a href="https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/">not use <code>&lt;picture&gt;</code> most of the time</a>). URLs in the <code>srcset</code> are cloudinary URLs that <a href="http://cloudinary.com/features#fetch">fetch on-the-fly</a> the post's images and resize them to several sizes.</p>
-
-<p>You are in full control of the number of generated images and their sizes, and the <code>sizes</code> attribute that helps the browser decide which image to download. See the complete configuration options for details.</p>
+<p>You are in full control of the number of generated images and their sizes, and the <code class="highlighter-rouge">sizes</code> attribute that helps the browser decide which image to download. See the complete configuration options for details.</p>
 
 <p>Here is the general syntax of this Liquid tag:</p>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary [preset] path/to/img.jpg [attr="value"] %}</span></pre></div>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>{% cloudinary <span class="p">[</span><span class="nv">preset</span><span class="p">]</span> path/to/img.jpg <span class="p">[</span><span class="nv">attr="value"</span><span class="p">]</span> %}
+</code></pre>
+</div>
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-
-
-<h2>
-<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of contents</h2>
-
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li>
-<a href="#configuration">Configuration</a>
+<h1 id="table-of-contents">Table of contents</h1>
 
 <ul>
-<li><a href="#mandatory-settings">Mandatory settings</a></li>
-<li>
-<a href="#optional-global-settings">Optional global settings</a>
-
-<ul>
-<li><a href="#verbose-default-false"><code>verbose</code> (default: <code>false</code>)</a></li>
-</ul>
-</li>
-<li>
-<a href="#optional-but-highly-recommended-presets">Optional (but highly recommended) presets</a>
-
-<ul>
-<li><a href="#default-preset">Default preset</a></li>
-<li><a href="#additional-presets">Additional presets</a></li>
-</ul>
-</li>
-<li>
-<a href="#detailed-preset-settings">Detailed preset settings</a>
-
-<ul>
-<li><a href="#figure-default-auto"><code>figure</code> (default: <code>auto</code>)</a></li>
-<li><a href="#min_size-default-320"><code>min_size</code> (default: <code>320</code>)</a></li>
-<li><a href="#max_size-default-1200"><code>max_size</code> (default: <code>1200</code>)</a></li>
-<li><a href="#steps-default-5"><code>steps</code> (default: <code>5</code>)</a></li>
-<li><a href="#sizes-default-100vw"><code>sizes</code> (default: <code>"100vw"</code>)</a></li>
-<li><a href="#attributes-default-none"><code>attributes</code> (default: none)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#live-example">Live example</a></li>
-<li><a href="#to-do">To do</a></li>
-<li><a href="#do-you-use-the-plugin-on-a-live-site">Do you use the plugin on a live site?</a></li>
+  <li><a href="#installation">Installation</a></li>
+  <li><a href="#configuration">Configuration</a>
+    <ul>
+      <li><a href="#mandatory-settings">Mandatory settings</a></li>
+      <li><a href="#optional-global-settings">Optional global settings</a>
+        <ul>
+          <li><a href="#verbose-default-false"><code class="highlighter-rouge">verbose</code> (default: <code class="highlighter-rouge">false</code>)</a></li>
+        </ul>
+      </li>
+      <li><a href="#optional-but-highly-recommended-presets">Optional (but highly recommended) presets</a>
+        <ul>
+          <li><a href="#default-preset">Default preset</a></li>
+          <li><a href="#additional-presets">Additional presets</a></li>
+        </ul>
+      </li>
+      <li><a href="#detailed-preset-settings">Detailed preset settings</a>
+        <ul>
+          <li><a href="#figure-default-auto"><code class="highlighter-rouge">figure</code> (default: <code class="highlighter-rouge">auto</code>)</a></li>
+          <li><a href="#min_size-default-320"><code class="highlighter-rouge">min_size</code> (default: <code class="highlighter-rouge">320</code>)</a></li>
+          <li><a href="#max_size-default-1200"><code class="highlighter-rouge">max_size</code> (default: <code class="highlighter-rouge">1200</code>)</a></li>
+          <li><a href="#steps-default-5"><code class="highlighter-rouge">steps</code> (default: <code class="highlighter-rouge">5</code>)</a></li>
+          <li><a href="#sizes-default-100vw"><code class="highlighter-rouge">sizes</code> (default: <code class="highlighter-rouge">"100vw"</code>)</a></li>
+          <li><a href="#attributes-default-none"><code class="highlighter-rouge">attributes</code> (default: none)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#live-example">Live example</a></li>
+  <li><a href="#to-do">To do</a></li>
+  <li><a href="#do-you-use-the-plugin-on-a-live-site">Do you use the plugin on a live site?</a></li>
 </ul>
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+<h1 id="installation">Installation</h1>
 
 <p><a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Sign up <strong>for free</strong> on Cloudinary!</a> The free account should be enough for most blogs.</p>
 
-<p>Add <code>gem 'jekyll-cloudinary'</code> to your <code>Gemfile</code> and run <code>bundle update</code> to install the gem.</p>
+<p>Add <code class="highlighter-rouge">gem 'jekyll-cloudinary'</code> to your <code class="highlighter-rouge">Gemfile</code> and run <code class="highlighter-rouge">bundle update</code> to install the gem.</p>
 
-<p>Add <code>jekyll-cloudinary</code> to your <code>_config.yml</code> like the following:</p>
+<p>Add <code class="highlighter-rouge">jekyll-cloudinary</code> to your <code class="highlighter-rouge">_config.yml</code> like the following:</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">gems:</span></span>
-  <span class="pl-s">- <span class="pl-s">jekyll-cloudinary</span></span></pre></div>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">gems</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-cloudinary</span>
+</code></pre>
+</div>
 
-<h2>
-<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+<h1 id="configuration">Configuration</h1>
 
-<h3>
-<a id="mandatory-settings" class="anchor" href="#mandatory-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mandatory settings</h3>
+<h2 id="mandatory-settings">Mandatory settings</h2>
 
-<p>Add <code>cloudinary</code> to your <code>_config.yml</code> and your Cloudinary "Cloud name" (find it in your <a href="https://cloudinary.com/console">Cloudinary dashboard</a>):</p>
+<p>Add <code class="highlighter-rouge">cloudinary</code> to your <code class="highlighter-rouge">_config.yml</code> and your Cloudinary “Cloud name” (find it in your <a href="https://cloudinary.com/console">Cloudinary dashboard</a>):</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
-  <span class="pl-s"><span class="pl-ent">cloud_name:</span> <span class="pl-s">&lt;put here your Cloudinary "Cloud name"&gt;</span></span></pre></div>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cloudinary</span><span class="pi">:</span>
+  <span class="s">cloud_name</span><span class="pi">:</span> <span class="s">&lt;put here your Cloudinary "Cloud name"&gt;</span>
+</code></pre>
+</div>
 
-<h3>
-<a id="optional-global-settings" class="anchor" href="#optional-global-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional global settings</h3>
+<h2 id="optional-global-settings">Optional global settings</h2>
 
 <p>You can now define some global settings</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
-  …
-  <span class="pl-s"><span class="pl-ent">verbose:</span> <span class="pl-c1">true</span></span></pre></div>
-
-<h4>
-<a id="verbose-default-false" class="anchor" href="#verbose-default-false" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>verbose</code> (default: <code>false</code>)</h4>
-
-<p>When set to <code>true</code>, this setting will show messages in the console when something goes wrong, such as:</p>
-
-<pre><code>[Cloudinary] Couldn't find this image to check its width: /path/to/jekyll/_site/assets/img.jpg
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cloudinary</span><span class="pi">:</span>
+  <span class="s">…</span>
+  <span class="s">verbose</span><span class="pi">:</span> <span class="s">true</span>
 </code></pre>
+</div>
+
+<h3 id="verbose-default-false"><code class="highlighter-rouge">verbose</code> (default: <code class="highlighter-rouge">false</code>)</h3>
+
+<p>When set to <code class="highlighter-rouge">true</code>, this setting will show messages in the console when something goes wrong, such as:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[Cloudinary] Couldn't find this image to check its width: /path/to/jekyll/_site/assets/img.jpg
+</code></pre>
+</div>
 
 <p>or</p>
 
-<pre><code>[Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
+<div class="highlighter-rouge"><pre class="highlight"><code>[Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
 </code></pre>
+</div>
 
-<h3>
-<a id="optional-but-highly-recommended-presets" class="anchor" href="#optional-but-highly-recommended-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional (but highly recommended) presets</h3>
+<h2 id="optional-but-highly-recommended-presets">Optional (but highly recommended) presets</h2>
 
-<p>You can now define the presets you need for your posts' images, starting with the default one:</p>
+<p>You can now define the presets you need for your posts’ images, starting with the default one:</p>
 
-<h4>
-<a id="default-preset" class="anchor" href="#default-preset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default preset</h4>
+<h3 id="default-preset">Default preset</h3>
 
-<p>The default preset is the one you don't even have to mention when using the Liquid tag, and that will be used if a preset you use in the tag doesn't exist.</p>
+<p>The default preset is the one you don’t even have to mention when using the Liquid tag, and that will be used if a preset you use in the tag doesn’t exist.</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
-  …
-  <span class="pl-s"><span class="pl-ent">presets:</span></span>
-    <span class="pl-s"><span class="pl-ent">default:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_size:</span> 320</span>
-      <span class="pl-c1"><span class="pl-ent">max_size:</span> 1600</span>
-      <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
-      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span></span></pre></div>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cloudinary</span><span class="pi">:</span>
+  <span class="s">…</span>
+  <span class="s">presets</span><span class="pi">:</span>
+    <span class="s">default</span><span class="pi">:</span>
+      <span class="s">min_size</span><span class="pi">:</span> <span class="s">320</span>
+      <span class="s">max_size</span><span class="pi">:</span> <span class="s">1600</span>
+      <span class="s">steps</span><span class="pi">:</span> <span class="s">5</span>
+      <span class="s">sizes</span><span class="pi">:</span> <span class="s2">"</span><span class="s">(min-width:</span><span class="nv"> </span><span class="s">50rem)</span><span class="nv"> </span><span class="s">50rem,</span><span class="nv"> </span><span class="s">90vw"</span>
+</code></pre>
+</div>
 
-<p>This preset will generate five images 320 to 1600 pixels wide in the <code>srcset</code> and define <code>sizes</code> as <code>"(min-width: 50rem) 50rem, 90vw"</code>.</p>
+<p>This preset will generate five images 320 to 1600 pixels wide in the <code class="highlighter-rouge">srcset</code> and define <code class="highlighter-rouge">sizes</code> as <code class="highlighter-rouge">"(min-width: 50rem) 50rem, 90vw"</code>.</p>
 
 <p>With this preset, you only have to write this in your Markdown post:</p>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary /assets/img.jpg alt="beautiful!" %}</span></pre></div>
+<div class="language-liquid highlighter-rouge"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">cloudinary</span><span class="w"> </span>/assets/img.jpg<span class="w"> </span><span class="na">alt</span><span class="o">=</span><span class="s2">"beautiful!"</span><span class="w"> </span><span class="p">%}</span>
+</code></pre>
+</div>
 
 <p>To get this HTML:</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
-  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_480,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg<span class="pl-pds">"</span></span>
-  <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
-<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_320,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 320w,</span>
-<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_640,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
-<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_960,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 960w</span>
-<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_1280,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 1280w</span>
-<span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_1600,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 1600w</span>
-<span class="pl-s">    <span class="pl-pds">"</span></span>
-  <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span>
-  <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>beautiful!<span class="pl-pds">"</span></span>
-  <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>480<span class="pl-pds">"</span></span>
-  <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>320<span class="pl-pds">"</span></span>
-/&gt;</pre></div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;img</span>
+  <span class="na">src=</span><span class="s">"http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_480,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg"</span>
+  <span class="na">srcset=</span><span class="s">"
+    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_320,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 320w,
+    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_640,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w
+    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_960,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 960w
+    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_1280,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 1280w
+    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_1600,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 1600w
+    "</span>
+  <span class="na">sizes=</span><span class="s">"(min-width: 50rem) 50rem, 90vw"</span>
+  <span class="na">alt=</span><span class="s">"beautiful!"</span>
+  <span class="na">width=</span><span class="s">"480"</span>
+  <span class="na">height=</span><span class="s">"320"</span>
+<span class="nt">/&gt;</span>
+</code></pre>
+</div>
 
-<p>There is a true default <code>default</code> preset, but you're strongly encouraged to define your own default preset.</p>
+<p>There is a true default <code class="highlighter-rouge">default</code> preset, but you’re strongly encouraged to define your own default preset.</p>
 
-<h4>
-<a id="additional-presets" class="anchor" href="#additional-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional presets</h4>
+<h3 id="additional-presets">Additional presets</h3>
 
 <p>You can add other presets if you need several image sizes in your posts.</p>
 
 <p>Here is an example for images that take only one third of the post width:</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
-  …
-  <span class="pl-s"><span class="pl-ent">presets:</span></span>
-    …
-    <span class="pl-s"><span class="pl-ent">onethird:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_size:</span> 110</span>
-      <span class="pl-c1"><span class="pl-ent">max_size:</span> 535</span>
-      <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
-      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 17rem, 30vw<span class="pl-pds">"</span></span></span>
-      <span class="pl-s"><span class="pl-ent">attributes:</span></span>
-        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s"><span class="pl-pds">"</span>one3rd<span class="pl-pds">"</span></span></span></pre></div>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cloudinary</span><span class="pi">:</span>
+  <span class="s">…</span>
+  <span class="s">presets</span><span class="pi">:</span>
+    <span class="s">…</span>
+    <span class="s">onethird</span><span class="pi">:</span>
+      <span class="s">min_size</span><span class="pi">:</span> <span class="s">110</span>
+      <span class="s">max_size</span><span class="pi">:</span> <span class="s">535</span>
+      <span class="s">steps</span><span class="pi">:</span> <span class="s">3</span>
+      <span class="s">sizes</span><span class="pi">:</span> <span class="s2">"</span><span class="s">(min-width:</span><span class="nv"> </span><span class="s">50rem)</span><span class="nv"> </span><span class="s">17rem,</span><span class="nv"> </span><span class="s">30vw"</span>
+      <span class="s">attributes</span><span class="pi">:</span>
+        <span class="s">class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">one3rd"</span>
+</code></pre>
+</div>
 
 <p>To use this additional preset, you will have to write this in your Markdown post:</p>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary onethird /assets/img.jpg %}</span></pre></div>
+<div class="language-liquid highlighter-rouge"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">cloudinary</span><span class="w"> </span>onethird<span class="w"> </span>/assets/img.jpg<span class="w"> </span><span class="p">%}</span>
+</code></pre>
+</div>
 
-<p>The generated element will also get a <code>class="one3rd"</code> that can be useful for example with this CSS:</p>
+<p>The generated element will also get a <code class="highlighter-rouge">class="one3rd"</code> that can be useful for example with this CSS:</p>
 
-<div class="highlight highlight-source-css"><pre><span class="pl-e">.one3rd</span> {
-  <span class="pl-c1"><span class="pl-c1">max-width</span></span>: <span class="pl-c1">33<span class="pl-k">%</span></span>;
-  <span class="pl-c1"><span class="pl-c1">float</span></span>: <span class="pl-c1">right</span>;
-  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-k">em</span></span> <span class="pl-c1">1<span class="pl-k">em</span></span>;
-}</pre></div>
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.one3rd</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">33%</span><span class="p">;</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1em</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
-<h3>
-<a id="detailed-preset-settings" class="anchor" href="#detailed-preset-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Detailed preset settings</h3>
+<h2 id="detailed-preset-settings">Detailed preset settings</h2>
 
-<h4>
-<a id="figure-default-auto" class="anchor" href="#figure-default-auto" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>figure</code> (default: <code>auto</code>)</h4>
+<h3 id="figure-default-auto"><code class="highlighter-rouge">figure</code> (default: <code class="highlighter-rouge">auto</code>)</h3>
 
-<p>This setting lets you decide what to do when there is a <code>caption</code> attribute in the Cloudinary Liquid tag.</p>
+<p>This setting lets you decide what to do when there is a <code class="highlighter-rouge">caption</code> attribute in the Cloudinary Liquid tag.</p>
 
 <p>The value can be:</p>
 
 <ul>
-<li>
-<code>auto</code> (default): will generate a <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> only if there's a caption</li>
-<li>
-<code>never</code>: will always generate a <code>&lt;img&gt;</code>, losing the caption</li>
-<li>
-<code>always</code>: will always generate a <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>, even if there's no <code>caption</code> attribute</li>
+  <li><code class="highlighter-rouge">auto</code> (default): will generate a <code class="highlighter-rouge">&lt;figure&gt;</code> and <code class="highlighter-rouge">&lt;figcaption&gt;</code> only if there’s a caption</li>
+  <li><code class="highlighter-rouge">never</code>: will always generate a <code class="highlighter-rouge">&lt;img&gt;</code>, losing the caption</li>
+  <li><code class="highlighter-rouge">always</code>: will always generate a <code class="highlighter-rouge">&lt;figure&gt;</code> and <code class="highlighter-rouge">&lt;figcaption&gt;</code>, even if there’s no <code class="highlighter-rouge">caption</code> attribute</li>
 </ul>
 
-<p>If a <code>&lt;figure&gt;</code> is generated and there are attributes in the Liquid tag, they are added to the <code>&lt;img&gt;</code> if they are <code>alt</code> or <code>title</code>, or to the <code>&lt;figure&gt;</code>.</p>
+<p>If a <code class="highlighter-rouge">&lt;figure&gt;</code> is generated and there are attributes in the Liquid tag, they are added to the <code class="highlighter-rouge">&lt;img&gt;</code> if they are <code class="highlighter-rouge">alt</code> or <code class="highlighter-rouge">title</code>, or to the <code class="highlighter-rouge">&lt;figure&gt;</code>.</p>
 
-<h4>
-<a id="min_size-default-320" class="anchor" href="#min_size-default-320" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_size</code> (default: <code>320</code>)</h4>
+<h3 id="minsize-default-320"><code class="highlighter-rouge">min_size</code> (default: <code class="highlighter-rouge">320</code>)</h3>
 
-<h4>
-<a id="max_size-default-1200" class="anchor" href="#max_size-default-1200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_size</code> (default: <code>1200</code>)</h4>
+<h3 id="maxsize-default-1200"><code class="highlighter-rouge">max_size</code> (default: <code class="highlighter-rouge">1200</code>)</h3>
 
-<h4>
-<a id="steps-default-5" class="anchor" href="#steps-default-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>steps</code> (default: <code>5</code>)</h4>
+<h3 id="steps-default-5"><code class="highlighter-rouge">steps</code> (default: <code class="highlighter-rouge">5</code>)</h3>
 
-<h4>
-<a id="sizes-default-100vw" class="anchor" href="#sizes-default-100vw" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>sizes</code> (default: <code>"100vw"</code>)</h4>
+<h3 id="sizes-default-100vw"><code class="highlighter-rouge">sizes</code> (default: <code class="highlighter-rouge">"100vw"</code>)</h3>
 
-<h4>
-<a id="attributes-default-none" class="anchor" href="#attributes-default-none" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>attributes</code> (default: none)</h4>
+<h3 id="attributes-default-none"><code class="highlighter-rouge">attributes</code> (default: none)</h3>
 
 <p>Attributes are added without transformation to the generated element.</p>
 
-<p>You can obviously define the <code>alt</code> attribute, mandatory for accessibility, but you can also set a <code>title</code>, a <code>class</code>, <code>aria-*</code> attributes for enhanced accessibility, or even <code>data-*</code> attributes you would like to use later with CSS or JavaScript.</p>
+<p>You can obviously define the <code class="highlighter-rouge">alt</code> attribute, mandatory for accessibility, but you can also set a <code class="highlighter-rouge">title</code>, a <code class="highlighter-rouge">class</code>, <code class="highlighter-rouge">aria-*</code> attributes for enhanced accessibility, or even <code class="highlighter-rouge">data-*</code> attributes you would like to use later with CSS or JavaScript.</p>
 
-<p>The <code>caption</code> attribute is the only one that can act differently, depending on the <code>figure</code> setting.</p>
+<p>The <code class="highlighter-rouge">caption</code> attribute is the only one that can act differently, depending on the <code class="highlighter-rouge">figure</code> setting.</p>
 
-<p><code>alt</code>, <code>title</code> and <code>caption</code> attributes can contain Markdown.</p>
+<p><code class="highlighter-rouge">alt</code>, <code class="highlighter-rouge">title</code> and <code class="highlighter-rouge">caption</code> attributes can contain Markdown.</p>
 
-<h2>
-<a id="live-example" class="anchor" href="#live-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Live example</h2>
+<h1 id="live-example">Live example</h1>
 
 <p>Go to this post: <a href="https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html">https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html</a>.</p>
 
 <p>The source Markdown is here: <a href="https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md">https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md</a>.</p>
 
-<p>The content is in french, yes, but look only at the images if you don't understand.</p>
+<p>The content is in french, yes, but look only at the images if you don’t understand.</p>
 
-<p>You'll find here:</p>
+<p>You’ll find here:</p>
 
 <ul>
-<li>2 logos floating on the right of the text (or centered on smaller screens): <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a>
-</li>
-<li>2 screenshots taking the whole width of the content: the <a href="http://cloudinary.com/pricing">Cloudinary pricing table</a>, and <a href="https://www.dareboost.com/en/home">Dareboost</a>'s performance monitoring graph</li>
+  <li>2 logos floating on the right of the text (or centered on smaller screens): <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw">Cloudinary</a></li>
+  <li>2 screenshots taking the whole width of the content: the <a href="http://cloudinary.com/pricing">Cloudinary pricing table</a>, and <a href="https://www.dareboost.com/en/home">Dareboost</a>’s performance monitoring graph</li>
 </ul>
 
 <p>These image types need different settings to deal with different sizes and position:</p>
 
 <ul>
-<li>screenshot always use the full content width, if they're wide enough</li>
-<li>logos are centered and take one half of the content width on small screens, and are floated and take one fourth of the content width on larger screens</li>
+  <li>screenshot always use the full content width, if they’re wide enough</li>
+  <li>logos are centered and take one half of the content width on small screens, and are floated and take one fourth of the content width on larger screens</li>
 </ul>
 
 <p>This is how I use the Cloudinary Liquid tag for the Cloudinary logo and prices table screenshot:</p>
 
-<div class="highlight highlight-text-html-liquid"><pre><span class="pl-s1">{% cloudinary logo /assets/logos/cloudinary.png alt="Logo de Cloudinary" %}</span>
-<span class="pl-s1">{% cloudinary cloudinary-pricing.png alt="Les tarifs de Cloudinary" caption="Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse" %}</span></pre></div>
+<div class="language-liquid highlighter-rouge"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">cloudinary</span><span class="w"> </span>logo<span class="w"> </span>/assets/logos/cloudinary.png<span class="w"> </span><span class="na">alt</span><span class="o">=</span><span class="s2">"Logo de Cloudinary"</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">cloudinary</span><span class="w"> </span>cloudinary-pricing.png<span class="w"> </span><span class="na">alt</span><span class="o">=</span><span class="s2">"Les tarifs de Cloudinary"</span><span class="w"> </span><span class="na">caption</span><span class="o">=</span><span class="s2">"Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse"</span><span class="w"> </span><span class="p">%}</span>
+</code></pre>
+</div>
 
-<p>The only difference is that I explicitly use the <code>logo</code> preset for the logo. The other image uses the <code>default</code> preset.</p>
+<p>The only difference is that I explicitly use the <code class="highlighter-rouge">logo</code> preset for the logo. The other image uses the <code class="highlighter-rouge">default</code> preset.</p>
 
 <p>Here is the necessary configuration for this:</p>
 
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">cloudinary:</span></span>
-  <span class="pl-s"><span class="pl-ent">cloud_name:</span> <span class="pl-s">…</span></span>
-  <span class="pl-s"><span class="pl-ent">verbose:</span> <span class="pl-c1">false</span></span>
-  <span class="pl-s"><span class="pl-ent">presets:</span></span>
-    <span class="pl-s"><span class="pl-ent">default:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_width:</span> 320</span>
-      <span class="pl-c1"><span class="pl-ent">max_width:</span> 1600</span>
-      <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
-      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">'</span></span></span>
-      <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">always</span></span>
-    <span class="pl-s"><span class="pl-ent">logo:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_width:</span> 80</span>
-      <span class="pl-c1"><span class="pl-ent">max_width:</span> 400</span>
-      <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
-      <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 13rem, (min-width: 40rem) 25vw, 45vw<span class="pl-pds">'</span></span></span>
-      <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">never</span></span>
-      <span class="pl-s"><span class="pl-ent">attributes:</span></span>
-        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s">logo</span></span></pre></div>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cloudinary</span><span class="pi">:</span>
+  <span class="s">cloud_name</span><span class="pi">:</span> <span class="s">…</span>
+  <span class="s">verbose</span><span class="pi">:</span> <span class="s">false</span>
+  <span class="s">presets</span><span class="pi">:</span>
+    <span class="s">default</span><span class="pi">:</span>
+      <span class="s">min_width</span><span class="pi">:</span> <span class="s">320</span>
+      <span class="s">max_width</span><span class="pi">:</span> <span class="s">1600</span>
+      <span class="s">steps</span><span class="pi">:</span> <span class="s">5</span>
+      <span class="s">sizes</span><span class="pi">:</span> <span class="s1">'</span><span class="s">(min-width:</span><span class="nv"> </span><span class="s">50rem)</span><span class="nv"> </span><span class="s">50rem,</span><span class="nv"> </span><span class="s">90vw'</span>
+      <span class="s">figure</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="s">logo</span><span class="pi">:</span>
+      <span class="s">min_width</span><span class="pi">:</span> <span class="s">80</span>
+      <span class="s">max_width</span><span class="pi">:</span> <span class="s">400</span>
+      <span class="s">steps</span><span class="pi">:</span> <span class="s">3</span>
+      <span class="s">sizes</span><span class="pi">:</span> <span class="s1">'</span><span class="s">(min-width:</span><span class="nv"> </span><span class="s">50rem)</span><span class="nv"> </span><span class="s">13rem,</span><span class="nv"> </span><span class="s">(min-width:</span><span class="nv"> </span><span class="s">40rem)</span><span class="nv"> </span><span class="s">25vw,</span><span class="nv"> </span><span class="s">45vw'</span>
+      <span class="s">figure</span><span class="pi">:</span> <span class="s">never</span>
+      <span class="s">attributes</span><span class="pi">:</span>
+        <span class="s">class</span><span class="pi">:</span> <span class="s">logo</span>
+</code></pre>
+</div>
 
 <p>It generates these HTML fragments (pretty printed here), for the logo:</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
-  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_480,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png<span class="pl-pds">"</span></span>
-  <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
-<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_limit,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,</span>
-<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_limit,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,</span>
-<span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_limit,w_400,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 400w<span class="pl-pds">"</span></span>
-  <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
-<span class="pl-s">    (min-width: 50rem) 13rem,</span>
-<span class="pl-s">    (min-width: 40rem) 25vw,</span>
-<span class="pl-s">    45vw<span class="pl-pds">"</span></span>
-  <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>logo<span class="pl-pds">"</span></span>
-  <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Logo de Cloudinary<span class="pl-pds">"</span></span>
-  <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>480<span class="pl-pds">"</span></span>
-  <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>350<span class="pl-pds">"</span></span>
-/&gt;</pre></div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;img</span>
+  <span class="na">src=</span><span class="s">"https://res.cloudinary.com/nho/image/fetch/c_limit,w_480,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png"</span>
+  <span class="na">srcset=</span><span class="s">"
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,
+    https://res.cloudinary.com/nho/image/fetch/c_limit,w_400,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 400w"</span>
+  <span class="na">sizes=</span><span class="s">"
+    (min-width: 50rem) 13rem,
+    (min-width: 40rem) 25vw,
+    45vw"</span>
+  <span class="na">class=</span><span class="s">"logo"</span>
+  <span class="na">alt=</span><span class="s">"Logo de Cloudinary"</span>
+  <span class="na">width=</span><span class="s">"480"</span>
+  <span class="na">height=</span><span class="s">"350"</span>
+<span class="nt">/&gt;</span>
+</code></pre>
+</div>
 
 <p>And for the screenshot:</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">figure</span>&gt;
-  &lt;<span class="pl-ent">img</span>
-    <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png<span class="pl-pds">"</span></span>
-    <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
-<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,</span>
-<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,</span>
-<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,</span>
-<span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w<span class="pl-pds">"</span></span>
-    <span class="pl-e">sizes</span>=<span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span>
-    <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>Les tarifs de Cloudinary<span class="pl-pds">"</span></span>
-    <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>1208<span class="pl-pds">"</span></span>
-    <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>561<span class="pl-pds">"</span></span>
-  /&gt;
-  &lt;<span class="pl-ent">figcaption</span>&gt;Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse&lt;/<span class="pl-ent">figcaption</span>&gt;
-&lt;/<span class="pl-ent">figure</span>&gt;</pre></div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;figure&gt;</span>
+  <span class="nt">&lt;img</span>
+    <span class="na">src=</span><span class="s">"https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png"</span>
+    <span class="na">srcset=</span><span class="s">"
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_960,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 960w,
+      https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 1208w"</span>
+    <span class="na">sizes=</span><span class="s">"(min-width: 50rem) 50rem, 90vw"</span>
+    <span class="na">alt=</span><span class="s">"Les tarifs de Cloudinary"</span>
+    <span class="na">width=</span><span class="s">"1208"</span>
+    <span class="na">height=</span><span class="s">"561"</span>
+  <span class="nt">/&gt;</span>
+  <span class="nt">&lt;figcaption&gt;</span>Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse<span class="nt">&lt;/figcaption&gt;</span>
+<span class="nt">&lt;/figure&gt;</span>
+</code></pre>
+</div>
 
-<p>There are only 4 version in the <code>srcset</code> here because 2 of the 5 expected sizes are larger than the source image, and are replaced by one using the native source image width.</p>
+<p>There are only 4 version in the <code class="highlighter-rouge">srcset</code> here because 2 of the 5 expected sizes are larger than the source image, and are replaced by one using the native source image width.</p>
 
 <p>And here are the relevant parts of the accompanying CSS (in Sass form):</p>
 
-<div class="highlight highlight-source-sass"><pre><span class="pl-k">article</span> {
-  <span class="pl-k">figure</span>, <span class="pl-k">img</span> {
-    <span class="pl-c1">margin</span>:<span class="pl-c1"> 2</span><span class="pl-k">em</span> <span class="pl-c1">auto</span>;
-    <span class="pl-c1">display</span>: <span class="pl-c1">block</span>;
-    <span class="pl-c1">max-width</span>:<span class="pl-c1"> 100</span><span class="pl-k">%</span>;
-    <span class="pl-c1">height</span>: <span class="pl-c1">auto</span>;
-  }
-}
+<div class="language-sass highlighter-rouge"><pre class="highlight"><code><span class="nt">article</span> <span class="err">{</span>
+  <span class="nt">figure</span><span class="o">,</span> <span class="nt">img</span> <span class="err">{</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">2em</span> <span class="nb">auto</span><span class="err">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="err">;</span>
+    <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span><span class="err">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nb">auto</span><span class="err">;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
 
-<span class="pl-e">.logo</span> {
-  <span class="pl-c1">display</span>: <span class="pl-c1">block</span>;
-  <span class="pl-c1">margin</span>:<span class="pl-c1"> 1</span><span class="pl-k">em</span> <span class="pl-c1">auto</span>;
-  <span class="pl-c1">max-width</span>:<span class="pl-c1"> 50</span><span class="pl-k">%</span>;
-  <span class="pl-c1">height</span>: <span class="pl-c1">auto</span>;
+<span class="nc">.logo</span> <span class="err">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="err">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">1em</span> <span class="nb">auto</span><span class="err">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">50%</span><span class="err">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="nb">auto</span><span class="err">;</span>
 
-  <span class="pl-k">@media </span>(<span class="pl-c1">min-width</span>:<span class="pl-c1"> 40</span><span class="pl-k">em</span>) {
-    <span class="pl-c1">max-width</span>:<span class="pl-c1"> 25</span><span class="pl-k">%</span>;
-    <span class="pl-c1">float</span>: <span class="pl-c1">right</span>;
-    <span class="pl-c1">margin</span>:<span class="pl-c1"> 0 0 1</span><span class="pl-k">em</span><span class="pl-c1"> 1</span><span class="pl-k">em</span>;
-  }
-}</pre></div>
+  <span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="m">40em</span><span class="p">)</span> <span class="err">{</span>
+    <span class="nl">max-width</span><span class="p">:</span> <span class="m">25%</span><span class="err">;</span>
+    <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="err">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1em</span> <span class="m">1em</span><span class="err">;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</code></pre>
+</div>
 
-<h2>
-<a id="to-do" class="anchor" href="#to-do" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>To do</h2>
+<h1 id="to-do">To do</h1>
 
 <p>There are already <a href="https://github.com/nhoizey/jekyll-cloudinary/issues">a few issues for bugs and things that should be added to the plugin</a>, feel free to add your ideas!</p>
 
-<h2>
-<a id="do-you-use-the-plugin-on-a-live-site" class="anchor" href="#do-you-use-the-plugin-on-a-live-site" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Do you use the plugin on a live site?</h2>
+<h1 id="do-you-use-the-plugin-on-a-live-site">Do you use the plugin on a live site?</h1>
 
-<p>Add it to <a href="https://github.com/nhoizey/jekyll-cloudinary/wiki/Sites">the "Sites" page of the wiki</a> and please let me know on Twitter: <a href="https://twitter.com/nhoizey">@nhoizey</a></p>
+<p>Add it to <a href="https://github.com/nhoizey/jekyll-cloudinary/wiki/Sites">the “Sites” page of the wiki</a> and please let me know on Twitter: <a href="https://twitter.com/nhoizey">@nhoizey</a></p>
+
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/nhoizey/jekyll-cloudinary">Jekyll Cloudinary Liquid tag</a> is maintained by <a href="https://github.com/nhoizey">nhoizey</a>.</span>
+  <span class="site-footer-owner"><a href="">Jekyll Cloudinary</a> is maintained by <a href="https://nicolas-hoizey.com">Nicolas Hoizey</a>.</span>
+  <span class="site-footer-credits">This page was generated by <a href="http://jekyllrb.com/">Jekyll</a> using the <a href="https://github.com/pietromenna/jekyll-cayman-theme">Cayman theme</a> by <a href="http://github.com/jasonlong">Jason Long</a>.</span>
+</footer>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
 
     </section>
 
-  
   </body>
 </html>
