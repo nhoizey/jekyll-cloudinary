@@ -101,8 +101,8 @@ cloudinary:
   …
   presets:
     default:
-      min_size: 320
-      max_size: 1600
+      min_width: 320
+      max_width: 1600
       fallback_max_width: 800
       steps: 5
       sizes: "(min-width: 50rem) 50rem, 90vw"
@@ -149,8 +149,8 @@ cloudinary:
   presets:
     …
     onethird:
-      min_size: 110
-      max_size: 535
+      min_width: 110
+      max_width: 535
       fallback_max_width: 300
       steps: 3
       sizes: "(min-width: 50rem) 17rem, 30vw"
@@ -188,7 +188,8 @@ The value can be:
 
 If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt` or `title`, or to the `<figure>`.
 
-#### `min_size` (default: `320`)
+#### `min_width` (default: `320`)
+
 #### `max_width` (default: `1200`)
 
 #### `fallback_max_width` (defaut: `1200`)
