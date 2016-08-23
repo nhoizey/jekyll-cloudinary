@@ -103,11 +103,12 @@ cloudinary:
     default:
       min_size: 320
       max_size: 1600
+      fallback_max_width: 800
       steps: 5
       sizes: "(min-width: 50rem) 50rem, 90vw"
 ```
 
-This preset will generate five images 320 to 1600 pixels wide in the `srcset` and define `sizes` as `"(min-width: 50rem) 50rem, 90vw"`.
+This preset will generate five images 320 to 1600 pixels wide in the `srcset` and define `sizes` as `"(min-width: 50rem) 50rem, 90vw"`. The fallback image defined in the `src` will have a width of 800 pixels.
 
 With this preset, you only have to write this in your Markdown post:
 
@@ -119,7 +120,7 @@ To get this HTML:
 
 ```html
 <img
-  src="http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_480,q_auto,f_auto/https://<your-domain>/assets/img.jpg"
+  src="http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_800,q_auto,f_auto/https://<your-domain>/assets/img.jpg"
   srcset="
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_320,q_auto,f_auto/https://<your-domain>/assets/img.jpg 320w,
     http://res.cloudinary.com/<cloud_name>/image/fetch/c_limit,w_640,q_auto,f_auto/https://<your-domain>/assets/img.jpg 640w
@@ -150,6 +151,7 @@ cloudinary:
     onethird:
       min_size: 110
       max_size: 535
+      fallback_max_width: 300
       steps: 3
       sizes: "(min-width: 50rem) 17rem, 30vw"
       attributes:
@@ -187,8 +189,9 @@ The value can be:
 If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt` or `title`, or to the `<figure>`.
 
 #### `min_size` (default: `320`)
+#### `max_width` (default: `1200`)
 
-#### `max_size` (default: `1200`)
+#### `fallback_max_width` (defaut: `1200`)
 
 #### `steps` (default: `5`)
 
@@ -241,12 +244,14 @@ cloudinary:
     default:
       min_width: 320
       max_width: 1600
+      fallback_max_width: 800
       steps: 5
       sizes: '(min-width: 50rem) 50rem, 90vw'
       figure: always
     logo:
       min_width: 80
       max_width: 400
+      fallback_max_width: 200
       steps: 3
       sizes: '(min-width: 50rem) 13rem, (min-width: 40rem) 25vw, 45vw'
       figure: never
@@ -258,7 +263,7 @@ It generates these HTML fragments (pretty printed here), for the logo:
 
 ```html
 <img
-  src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_480,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png"
+  src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_200,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png"
   srcset="
     https://res.cloudinary.com/nho/image/fetch/c_limit,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,
     https://res.cloudinary.com/nho/image/fetch/c_limit,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,
@@ -279,7 +284,7 @@ And for the screenshot:
 ```html
 <figure>
   <img
-    src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png"
+    src="https://res.cloudinary.com/nho/image/fetch/c_limit,w_800,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png"
     srcset="
       https://res.cloudinary.com/nho/image/fetch/c_limit,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,
       https://res.cloudinary.com/nho/image/fetch/c_limit,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,
