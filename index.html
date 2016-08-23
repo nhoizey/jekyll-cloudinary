@@ -2,27 +2,20 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Jekyl Cloudinary</title>
+    <title>Jekyll-cloudinary by nhoizey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-1655999-13', 'auto');
-    ga('send', 'pageview');
-    </script>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Jekyll Cloudinary</h1>
+      <h1 class="project-name">Jekyll-cloudinary</h1>
       <h2 class="project-tagline">A Jekyll plugin adding a Liquid tag to use Cloudinary for optimized responsive posts images</h2>
       <a href="https://github.com/nhoizey/jekyll-cloudinary" class="btn">View on GitHub</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nhoizey/jekyll-cloudinary/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
@@ -148,12 +141,13 @@
   …
   <span class="pl-s"><span class="pl-ent">presets:</span></span>
     <span class="pl-s"><span class="pl-ent">default:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_size:</span> 320</span>
-      <span class="pl-c1"><span class="pl-ent">max_size:</span> 1600</span>
+      <span class="pl-c1"><span class="pl-ent">min_width:</span> 320</span>
+      <span class="pl-c1"><span class="pl-ent">max_width:</span> 1600</span>
+      <span class="pl-c1"><span class="pl-ent">fallback_max_width:</span> 800</span>
       <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
       <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">"</span></span></span></pre></div>
 
-<p>This preset will generate five images 320 to 1600 pixels wide in the <code>srcset</code> and define <code>sizes</code> as <code>"(min-width: 50rem) 50rem, 90vw"</code>.</p>
+<p>This preset will generate five images 320 to 1600 pixels wide in the <code>srcset</code> and define <code>sizes</code> as <code>"(min-width: 50rem) 50rem, 90vw"</code>. The fallback image defined in the <code>src</code> will have a width of 800 pixels.</p>
 
 <p>With this preset, you only have to write this in your Markdown post:</p>
 
@@ -162,7 +156,7 @@
 <p>To get this HTML:</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
-  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_480,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg<span class="pl-pds">"</span></span>
+  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_800,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg<span class="pl-pds">"</span></span>
   <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
 <span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_320,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 320w,</span>
 <span class="pl-s">    http://res.cloudinary.com/&lt;cloud_name&gt;/image/fetch/c_limit,w_640,q_auto,f_auto/https://&lt;your-domain&gt;/assets/img.jpg 640w</span>
@@ -176,7 +170,7 @@
   <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>320<span class="pl-pds">"</span></span>
 /&gt;</pre></div>
 
-<p>There is a true default <code>default</code> preset, but you're strongly encouraged to define your own default preset.</p>
+<p>There is a true default <code>default</code> preset, but you're strongly encouraged to override it with your own default preset.</p>
 
 <h4>
 <a id="additional-presets" class="anchor" href="#additional-presets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional presets</h4>
@@ -190,8 +184,9 @@
   <span class="pl-s"><span class="pl-ent">presets:</span></span>
     …
     <span class="pl-s"><span class="pl-ent">onethird:</span></span>
-      <span class="pl-c1"><span class="pl-ent">min_size:</span> 110</span>
-      <span class="pl-c1"><span class="pl-ent">max_size:</span> 535</span>
+      <span class="pl-c1"><span class="pl-ent">min_width:</span> 110</span>
+      <span class="pl-c1"><span class="pl-ent">max_width:</span> 535</span>
+      <span class="pl-c1"><span class="pl-ent">fallback_max_width:</span> 300</span>
       <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
       <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">"</span>(min-width: 50rem) 17rem, 30vw<span class="pl-pds">"</span></span></span>
       <span class="pl-s"><span class="pl-ent">attributes:</span></span>
@@ -231,10 +226,13 @@
 <p>If a <code>&lt;figure&gt;</code> is generated and there are attributes in the Liquid tag, they are added to the <code>&lt;img&gt;</code> if they are <code>alt</code> or <code>title</code>, or to the <code>&lt;figure&gt;</code>.</p>
 
 <h4>
-<a id="min_size-default-320" class="anchor" href="#min_size-default-320" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_size</code> (default: <code>320</code>)</h4>
+<a id="min_width-default-320" class="anchor" href="#min_width-default-320" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>min_width</code> (default: <code>320</code>)</h4>
 
 <h4>
-<a id="max_size-default-1200" class="anchor" href="#max_size-default-1200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_size</code> (default: <code>1200</code>)</h4>
+<a id="max_width-default-1200" class="anchor" href="#max_width-default-1200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>max_width</code> (default: <code>1200</code>)</h4>
+
+<h4>
+<a id="fallback_max_width-defaut-1200" class="anchor" href="#fallback_max_width-defaut-1200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>fallback_max_width</code> (defaut: <code>1200</code>)</h4>
 
 <h4>
 <a id="steps-default-5" class="anchor" href="#steps-default-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>steps</code> (default: <code>5</code>)</h4>
@@ -293,12 +291,14 @@
     <span class="pl-s"><span class="pl-ent">default:</span></span>
       <span class="pl-c1"><span class="pl-ent">min_width:</span> 320</span>
       <span class="pl-c1"><span class="pl-ent">max_width:</span> 1600</span>
+      <span class="pl-c1"><span class="pl-ent">fallback_max_width:</span> 800</span>
       <span class="pl-c1"><span class="pl-ent">steps:</span> 5</span>
       <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 50rem, 90vw<span class="pl-pds">'</span></span></span>
       <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">always</span></span>
     <span class="pl-s"><span class="pl-ent">logo:</span></span>
       <span class="pl-c1"><span class="pl-ent">min_width:</span> 80</span>
       <span class="pl-c1"><span class="pl-ent">max_width:</span> 400</span>
+      <span class="pl-c1"><span class="pl-ent">fallback_max_width:</span> 200</span>
       <span class="pl-c1"><span class="pl-ent">steps:</span> 3</span>
       <span class="pl-s"><span class="pl-ent">sizes:</span> <span class="pl-s"><span class="pl-pds">'</span>(min-width: 50rem) 13rem, (min-width: 40rem) 25vw, 45vw<span class="pl-pds">'</span></span></span>
       <span class="pl-s"><span class="pl-ent">figure:</span> <span class="pl-s">never</span></span>
@@ -308,7 +308,7 @@
 <p>It generates these HTML fragments (pretty printed here), for the logo:</p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span>
-  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_480,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png<span class="pl-pds">"</span></span>
+  <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_200,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png<span class="pl-pds">"</span></span>
   <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
 <span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_limit,w_80,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 80w,</span>
 <span class="pl-s">    https://res.cloudinary.com/nho/image/fetch/c_limit,w_240,q_auto,f_auto/https://nicolas-hoizey.com/assets/logos/cloudinary.png 240w,</span>
@@ -327,7 +327,7 @@
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">figure</span>&gt;
   &lt;<span class="pl-ent">img</span>
-    <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_1208,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png<span class="pl-pds">"</span></span>
+    <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://res.cloudinary.com/nho/image/fetch/c_limit,w_800,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png<span class="pl-pds">"</span></span>
     <span class="pl-e">srcset</span>=<span class="pl-s"><span class="pl-pds">"</span></span>
 <span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_320,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 320w,</span>
 <span class="pl-s">      https://res.cloudinary.com/nho/image/fetch/c_limit,w_640,q_auto,f_auto/https://nicolas-hoizey.com/2016/07/cloudinary-pricing.png 640w,</span>
