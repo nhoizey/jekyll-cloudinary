@@ -82,7 +82,7 @@ module Jekyll
           natural_width = image.columns
           natural_height = image.rows
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{fallback_max_width},q_auto,f_auto/#{image_url}"
+          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{settings["fallback_max_width"]},q_auto,f_auto/#{image_url}"
         else
           natural_width = 100_000
           width_height = ""
