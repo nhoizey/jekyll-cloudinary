@@ -12,13 +12,14 @@ module Jekyll
       def render(context)
         # Default settings
         preset_defaults = {
-          "min_width"  => 320,
-          "max_width"  => 1200,
-          "steps"      => 5,
-          "sizes"      => "100vw",
-          "figure"     => "auto",
-          "attributes" => {},
-          "verbose"    => false
+          "min_width"          => 320,
+          "max_width"          => 1200,
+          "fallback_max_width" => 1200,
+          "steps"              => 5,
+          "sizes"              => "100vw",
+          "figure"             => "auto",
+          "attributes"         => {},
+          "verbose"            => false
         }
 
         # Settings
@@ -81,7 +82,7 @@ module Jekyll
           natural_width = image.columns
           natural_height = image.rows
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url}"
+          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{fallback_max_width},q_auto,f_auto/#{image_url}"
         else
           natural_width = 100_000
           width_height = ""
