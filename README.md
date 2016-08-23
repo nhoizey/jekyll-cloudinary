@@ -135,7 +135,7 @@ To get this HTML:
 />
 ```
 
-There is a true default `default` preset, but you're strongly encouraged to define your own default preset.
+There is a true default `default` preset, but you're strongly encouraged to override it with your own default preset.
 
 #### Additional presets
 
