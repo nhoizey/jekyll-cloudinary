@@ -1,5 +1,5 @@
 module Jekyll
   module Cloudinary
-    VERSION = "1.5.2".freeze
+    VERSION = "1.6.0".freeze
   end
 end
