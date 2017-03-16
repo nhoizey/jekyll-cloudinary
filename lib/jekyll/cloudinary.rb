@@ -49,23 +49,24 @@ module Jekyll
           "page"               => false,
           "density"            => false,
           "flags"              => false,
-          "transformation"     => false
+          "transformation"     => false,
+          "url2png"            => false
         }
 
         # TODO: Add validation for this parameters
         transformation_options = {
           "height"             => "h",
-          "crop"               => "c",
+          "crop"               => "c", # can include add-on: imagga_scale
           "aspect_ratio"       => "ar",
           "gravity"            => "g",
           "zoom"               => "z",
           "x"                  => "x",
           "y"                  => "y",
           "fetch_format"       => "f",
-          "quality"            => "q",
+          "quality"            => "q", # can include add-on: jpegmini
           "radius"             => "r",
           "angle"              => "a",
-          "effect"             => "e",
+          "effect"             => "e", # can include add-on: viesus_correct
           "opacity"            => "o",
           "border"             => "bo",
           "background"         => "b",
@@ -116,6 +117,13 @@ module Jekyll
         end
 
         image_src = markup[:image_src]
+        
+        # Dynamic image type
+        type = "fetch"
+        if /^url2png\:/.match(image_src)
+          type = "url2png"
+          image_src.gsub! "url2png:", ""
+        end
         
         # Build source image URL
         is_image_remote = /^https?/.match(image_src)
@@ -211,33 +219,36 @@ module Jekyll
 
         # Get source image natural width
         image = false
-        # Trap format support issues from ImageMagick
-        begin
-          if is_image_remote
-            image = Magick::ImageList.new
-            urlimage = open(image_url) # Image Remote URL 
-            image.from_blob(urlimage.read)
-          elsif File.exist?(image_path)
-            image = Magick::Image::read(image_path).first
+        fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
+        # Standard fetch
+        if type == "fetch"
+          # Trap format support issues from ImageMagick
+          begin
+            if is_image_remote
+              image = Magick::ImageList.new
+              urlimage = open(image_url) # Image Remote URL 
+              image.from_blob(urlimage.read)
+            elsif File.exist?(image_path)
+              image = Magick::Image::read(image_path).first
+            end
+          rescue
+            image = false
           end
-        rescue
-          image = false
-        end
-        if image
-          natural_width = image.columns
-          natural_height = image.rows
-          width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
-        else
-          natural_width = 100_000
-          width_height = ""
-          fallback_url = image_url
-          Jekyll.logger.warn(
-            "[Cloudinary]",
-            "Couldn't find this image to check its width: #{image_path}. \
-            Try to run Jekyll build a second time. If it still doesn’t work \
-            it could be that your ImageMagick install doesn’t support this format."
-          )
+          if image
+            natural_width = image.columns
+            natural_height = image.rows
+            width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
+          else
+            natural_width = 100_000
+            width_height = ""
+            fallback_url = image_url
+            Jekyll.logger.warn(
+              "[Cloudinary]",
+              "Couldn't find this image to check its width: #{image_path}. \
+              Try to run Jekyll build a second time. If it still doesn’t work \
+              it could be that your ImageMagick install doesn’t support this format."
+            )
+          end
         end
 
         if preset["width_height"] == false
@@ -259,19 +270,19 @@ module Jekyll
               in #{context["page"]["path"]} not enough for ANY srcset version"
             )
           end
-          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
         else
           missed_sizes = []
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
-              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/#{transformations_string}w_#{width}/#{image_url} #{width}w"
+              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{width}/#{image_url} #{width}w"
             else
               missed_sizes.push(width)
             end
           end
           unless missed_sizes.empty?
-            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
+            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
             if settings["verbose"]
               Jekyll.logger.warn(
                 "[Cloudinary]",
