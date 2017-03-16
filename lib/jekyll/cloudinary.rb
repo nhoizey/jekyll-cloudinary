@@ -49,8 +49,7 @@ module Jekyll
           "page"               => false,
           "density"            => false,
           "flags"              => false,
-          "transformation"     => false,
-          "url2png"            => false
+          "transformation"     => false
         }
 
         # TODO: Add validation for this parameters
@@ -120,10 +119,11 @@ module Jekyll
         
         # Dynamic image type
         type = "fetch"
-        if /^url2png\:/.match(image_src)
-          type = "url2png"
-          image_src.gsub! "url2png:", ""
-        end
+        # TODO: URL2PNG requires signed URLs… need to investigate more
+        # if /^url2png\:/.match(image_src)
+        #   type = "url2png"
+        #   image_src.gsub! "url2png:", ""
+        # end
         
         # Build source image URL
         is_image_remote = /^https?/.match(image_src)
@@ -220,6 +220,8 @@ module Jekyll
         # Get source image natural width
         image = false
         fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
+        natural_width = 100_000
+        width_height = ""
         # Standard fetch
         if type == "fetch"
           # Trap format support issues from ImageMagick
@@ -239,8 +241,6 @@ module Jekyll
             natural_height = image.rows
             width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           else
-            natural_width = 100_000
-            width_height = ""
             fallback_url = image_url
             Jekyll.logger.warn(
               "[Cloudinary]",
