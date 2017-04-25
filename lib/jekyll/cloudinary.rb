@@ -2,7 +2,7 @@ module Jekyll
   module Cloudinary
 
     class CloudinaryTag < Liquid::Tag
-      require "RMagick"
+      require "fastimage"
 
       def initialize(tag_name, markup, tokens)
         @markup = markup
@@ -131,9 +131,7 @@ module Jekyll
 
         # Get source image natural width
         if File.exist?(image_path)
-          image = Magick::Image::read(image_path).first
-          natural_width = image.columns
-          natural_height = image.rows
+          natural_width, natural_height = FastImage.size(image_url)
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{preset["fallback_max_width"]},q_auto,f_auto/#{image_url}"
         else
@@ -179,7 +177,7 @@ module Jekyll
               Jekyll.logger.warn(
                 "[Cloudinary]",
                 "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) \
-                in #{context["page"].path} not enough for #{missed_sizes.join("px, ")}px \
+                in #{context["page"]["path"]} not enough for #{missed_sizes.join("px, ")}px \
                 version#{missed_sizes.length > 1 ? "s" : ""}"
               )
             end
