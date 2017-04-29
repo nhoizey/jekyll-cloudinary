@@ -19,7 +19,66 @@ module Jekyll
           "sizes"              => "100vw",
           "figure"             => "auto",
           "attributes"         => {},
-          "verbose"            => false
+          "verbose"            => false,
+          "width_height"       => true,
+          # Cloudinary transformations
+          "height"             => false,
+          "crop"               => "limit",
+          "aspect_ratio"       => false,
+          "gravity"            => false,
+          "zoom"               => false,
+          "x"                  => false,
+          "y"                  => false,
+          "format"             => false,
+          "fetch_format"       => "auto",
+          "quality"            => "auto",
+          "radius"             => false,
+          "angle"              => false,
+          "effect"             => false,
+          "opacity"            => false,
+          "border"             => false,
+          "background"         => false,
+          "overlay"            => false,
+          "underlay"           => false,
+          "default_image"      => false,
+          "delay"              => false,
+          "color"              => false,
+          "color_space"        => false,
+          "dpr"                => false,
+          "page"               => false,
+          "density"            => false,
+          "flags"              => false,
+          "transformation"     => false
+        }
+
+        # TODO: Add validation for this parameters
+        transformation_options = {
+          "height"             => "h",
+          "crop"               => "c", # can include add-on: imagga_scale
+          "aspect_ratio"       => "ar",
+          "gravity"            => "g",
+          "zoom"               => "z",
+          "x"                  => "x",
+          "y"                  => "y",
+          "fetch_format"       => "f",
+          "quality"            => "q", # can include add-on: jpegmini
+          "radius"             => "r",
+          "angle"              => "a",
+          "effect"             => "e", # can include add-on: viesus_correct
+          "opacity"            => "o",
+          "border"             => "bo",
+          "background"         => "b",
+          "overlay"            => "l",
+          "underlay"           => "u",
+          "default_image"      => "d",
+          "delay"              => "dl",
+          "color"              => "co",
+          "color_space"        => "cs",
+          "dpr"                => "dpr",
+          "page"               => "pg",
+          "density"            => "dn",
+          "flags"              => "fl",
+          "transformation"     => "t"
         }
 
         # Settings
@@ -56,24 +115,40 @@ module Jekyll
         end
 
         image_src = markup[:image_src]
-
+        
+        # Dynamic image type
+        type = "fetch"
+        # TODO: URL2PNG requires signed URLs… need to investigate more
+        # if /^url2png\:/.match(image_src)
+        #   type = "url2png"
+        #   image_src.gsub! "url2png:", ""
+        # end
+        
         # Build source image URL
-        is_image_path_absolute = %r!^/.*$!.match(image_src)
-        if is_image_path_absolute
-          image_path = File.join(site.config["destination"], image_src)
-          image_url = File.join(url, baseurl, image_src)
+        is_image_remote = /^https?/.match(image_src)
+        # It’s remote
+        if is_image_remote
+          image_path = image_src
+          image_url = image_src
+        # It’s local
         else
-          image_path = File.join(
-            site.config["destination"],
-            File.dirname(context["page"].url),
-            image_src
-          )
-          image_url = File.join(
-            url,
-            baseurl,
-            File.dirname(context["page"].url),
-            image_src
-          )
+          is_image_path_absolute = %r!^/.*$!.match(image_src)
+          if is_image_path_absolute
+            image_path = File.join(site.config["destination"], image_src)
+            image_url = File.join(url, baseurl, image_src)
+          else
+            image_path = File.join(
+              site.config["destination"],
+              File.dirname(context["page"]["url"]),
+              image_src
+            )
+            image_url = File.join(
+              url,
+              baseurl,
+              File.dirname(context["page"]["url"]),
+              image_src
+            )
+          end
         end
 
         if markup[:preset]
@@ -129,20 +204,26 @@ module Jekyll
 
         attr_string = html_attr.map { |a, v| "#{a}=\"#{v}\"" }.join(" ")
 
+        # Figure out the Cloudinary transformations
+        transformations = []
+        transformations_string = ""
+        transformation_options.each do | key, shortcode |
+          if preset[key]
+            transformations << "#{shortcode}_#{preset[key]}"
+          end
+        end
+        if transformations.length > 0
+          transformations_string = transformations.compact.reject(&:empty?).join(',') + ","
+        end
+
         # Get source image natural width
         if File.exist?(image_path)
           natural_width, natural_height = FastImage.size(image_url)
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{preset["fallback_max_width"]},q_auto,f_auto/#{image_url}"
+          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
         else
           natural_width = 100_000
           width_height = ""
-          Jekyll.logger.warn(
-            "[Cloudinary]",
-            "Couldn't find this image to check its width: #{image_path}. \
-            Try to run Jekyll build a second time."
-          )
-          fallback_url = image_url
         end
 
         srcset = []
@@ -157,22 +238,22 @@ module Jekyll
             Jekyll.logger.warn(
               "[Cloudinary]",
               "Width of source image '#{File.basename(image_src)}' (#{natural_width}px) \
-              in #{context["page"].path} not enough for ANY srcset version"
+              in #{context["page"]["path"]} not enough for ANY srcset version"
             )
           end
-          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
         else
           missed_sizes = []
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
-              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{width},q_auto,f_auto/#{image_url} #{width}w"
+              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{width}/#{image_url} #{width}w"
             else
               missed_sizes.push(width)
             end
           end
           unless missed_sizes.empty?
-            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/fetch/c_limit,w_#{natural_width},q_auto,f_auto/#{image_url} #{natural_width}w"
+            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
             if settings["verbose"]
               Jekyll.logger.warn(
                 "[Cloudinary]",
