@@ -115,7 +115,7 @@ module Jekyll
         end
 
         image_src = markup[:image_src]
-        
+
         # Dynamic image type
         type = "fetch"
         # TODO: URL2PNG requires signed URLs… need to investigate more
@@ -123,7 +123,7 @@ module Jekyll
         #   type = "url2png"
         #   image_src.gsub! "url2png:", ""
         # end
-        
+
         # Build source image URL
         is_image_remote = /^https?/.match(image_src)
         # It’s remote
@@ -217,19 +217,25 @@ module Jekyll
         end
 
         # Get source image natural width
-        if File.exist?(image_path)
+        if is_image_remote
           natural_width, natural_height = FastImage.size(image_url)
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
         else
-          natural_width = 100_000
-          width_height = ""
-          Jekyll.logger.warn(
-            "[Cloudinary]",
-            "Couldn't find this image to check its width: #{image_path}. \
-            Try to run Jekyll build a second time."
-          )
-          fallback_url = image_url
+          if File.exist?(image_path)
+            natural_width, natural_height = FastImage.size(image_path)
+            width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
+            fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
+          else
+            natural_width = 100_000
+            width_height = ""
+            Jekyll.logger.warn(
+              "[Cloudinary]",
+              "Couldn't find this image to check its width: #{image_path}. \
+              Try to run Jekyll build a second time."
+            )
+            fallback_url = image_url
+          end
         end
 
         srcset = []
