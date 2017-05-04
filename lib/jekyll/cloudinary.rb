@@ -242,8 +242,7 @@ module Jekyll
             width_height = ""
             Jekyll.logger.warn(
               "[Cloudinary]",
-              "Couldn't find this image to check its width: #{image_src_path}. \
-              Try to run Jekyll build a second time."
+              "Couldn't find this image to check its width: #{image_src_path}."
             )
             fallback_url = image_dest_url
           end
