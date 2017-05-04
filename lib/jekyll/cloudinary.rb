@@ -124,33 +124,6 @@ module Jekyll
         #   image_src.gsub! "url2png:", ""
         # end
 
-        # Build source image URL
-        is_image_remote = /^https?/.match(image_src)
-        # It’s remote
-        if is_image_remote
-          image_path = image_src
-          image_url = image_src
-        # It’s local
-        else
-          is_image_path_absolute = %r!^/.*$!.match(image_src)
-          if is_image_path_absolute
-            image_path = File.join(site.config["destination"], image_src)
-            image_url = File.join(url, baseurl, image_src)
-          else
-            image_path = File.join(
-              site.config["destination"],
-              File.dirname(context["page"]["url"]),
-              image_src
-            )
-            image_url = File.join(
-              url,
-              baseurl,
-              File.dirname(context["page"]["url"]),
-              image_src
-            )
-          end
-        end
-
         if markup[:preset]
           if settings["presets"][markup[:preset]]
             preset = preset.merge(settings["presets"][markup[:preset]])
@@ -216,25 +189,63 @@ module Jekyll
           transformations_string = transformations.compact.reject(&:empty?).join(',') + ","
         end
 
-        # Get source image natural width
+        # Build source image URL
+        is_image_remote = /^https?/.match(image_src)
         if is_image_remote
-          natural_width, natural_height = FastImage.size(image_url)
+          # It’s remote
+          image_dest_path = image_src
+          image_dest_url = image_src
+          natural_width, natural_height = FastImage.size(image_dest_url)
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
+          fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
         else
-          if File.exist?(image_path)
-            natural_width, natural_height = FastImage.size(image_path)
+          # It’s a local image
+          is_image_src_absolute = %r!^/.*$!.match(image_src)
+          if is_image_src_absolute
+            image_src_path = File.join(
+              site.config["source"],
+              image_src
+            )
+            image_dest_path = File.join(
+              site.config["destination"],
+              image_src
+            )
+            image_dest_url = File.join(
+              url,
+              baseurl,
+              image_src
+            )
+          else
+            image_src_path = File.join(
+              site.config["source"],
+              File.dirname(context["page"]["path"]),
+              image_src
+            )
+            image_dest_path = File.join(
+              site.config["destination"],
+              File.dirname(context["page"]["url"]),
+              image_src
+            )
+            image_dest_url = File.join(
+              url,
+              baseurl,
+              File.dirname(context["page"]["url"]),
+              image_src
+            )
+          end
+          if File.exist?(image_src_path)
+            natural_width, natural_height = FastImage.size(image_src_path)
             width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
-            fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_url}"
+            fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
           else
             natural_width = 100_000
             width_height = ""
             Jekyll.logger.warn(
               "[Cloudinary]",
-              "Couldn't find this image to check its width: #{image_path}. \
+              "Couldn't find this image to check its width: #{image_src_path}. \
               Try to run Jekyll build a second time."
             )
-            fallback_url = image_url
+            fallback_url = image_dest_url
           end
         end
 
@@ -253,19 +264,19 @@ module Jekyll
               in #{context["page"]["path"]} not enough for ANY srcset version"
             )
           end
-          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
+          srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_dest_url} #{natural_width}w"
         else
           missed_sizes = []
           (1..steps).each do |factor|
             width = min_width + (factor - 1) * step_width
             if width <= natural_width
-              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{width}/#{image_url} #{width}w"
+              srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{width}/#{image_dest_url} #{width}w"
             else
               missed_sizes.push(width)
             end
           end
           unless missed_sizes.empty?
-            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_url} #{natural_width}w"
+            srcset << "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{natural_width}/#{image_dest_url} #{natural_width}w"
             if settings["verbose"]
               Jekyll.logger.warn(
                 "[Cloudinary]",
