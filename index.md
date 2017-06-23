@@ -47,7 +47,7 @@ Here is the general syntax of this Liquid tag:
 
 Add `gem 'jekyll-cloudinary'` to the `jekyll_plugin` group in your `Gemfile`:
 
-```
+```ruby
 source 'https://rubygems.org'
 
 gem 'jekyll'
