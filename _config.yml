@@ -1,0 +1,8 @@
+title: Jekyll-cloudinary
+description: A Jekyll plugin adding a Liquid tag to use Cloudinary for optimized responsive posts images
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
