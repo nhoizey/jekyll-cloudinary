@@ -45,14 +45,19 @@ Here is the general syntax of this Liquid tag:
 
 [Sign up **for free** on Cloudinary!](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) The free account should be enough for most blogs.
 
-Add `gem 'jekyll-cloudinary'` to your `Gemfile` and run `bundle update` to install the gem.
+Add `gem 'jekyll-cloudinary'` to the `jekyll_plugin` group in your `Gemfile`:
 
-Add `jekyll-cloudinary` to your `_config.yml` like the following:
-
-```yaml
-gems:
-  - jekyll-cloudinary
 ```
+source 'https://rubygems.org'
+
+gem 'jekyll'
+
+group :jekyll_plugins do
+  gem 'jekyll-cloudinary'
+end
+```
+
+Then run `bundle update` to install the gem.
 
 ## Configuration
 
