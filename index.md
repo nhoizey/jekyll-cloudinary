@@ -11,9 +11,11 @@ You are in full control of the number of generated images and their sizes, and t
 
 Here is the general syntax of this Liquid tag:
 
-```liquid
-{% cloudinary [preset] path/to/img.jpg [attr="value"] %}
+{% raw %}
+```markdown
+{% cloudinary cloudflare.png alt="Un schéma montrant l'apport de Cloudflare" caption="Un schéma montrant l'apport de Cloudflare" %}
 ```
+{% endraw %}
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
