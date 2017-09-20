@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
 [![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary)
 
-`jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
+`jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](https://nho.io/cloudinary-signup) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
 
 It builds the HTML for responsive images in the posts, using the `srcset` and `sizes` attributes for the `<img />` tag (see [the "varying size and density" section of this post](https://jakearchibald.com/2015/anatomy-of-responsive-images/#varying-size-and-density) if this is new for you, and why it's recommended to [not use `<picture>` most of the time](https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/)). URLs in the `srcset` are cloudinary URLs that [fetch on-the-fly](http://cloudinary.com/features#fetch) the post's images and resize them to several sizes.
 
@@ -45,7 +45,7 @@ Here is the general syntax of this Liquid tag:
 
 ## Installation
 
-[Sign up **for free** on Cloudinary!](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw) The free account should be enough for most blogs.
+[Sign up **for free** on Cloudinary!](https://nho.io/cloudinary-signup) The free account should be enough for most blogs.
 
 Add `gem 'jekyll-cloudinary'` to the `jekyll_plugin` group in your `Gemfile`:
 
@@ -230,7 +230,7 @@ The content is in french, yes, but look only at the images if you don't understa
 
 You'll find here:
 
-- 2 logos floating on the right of the text (or centered on smaller screens): [Jekyll](http://jekyllrb.com/) and [Cloudinary](http://cloudinary.com/invites/lpov9zyyucivvxsnalc5/sgyyc0j14k6p0sbt51nw)
+- 2 logos floating on the right of the text (or centered on smaller screens): [Jekyll](http://jekyllrb.com/) and [Cloudinary](https://nho.io/cloudinary-signup)
 - 2 screenshots taking the whole width of the content: the [Cloudinary pricing table](http://cloudinary.com/pricing), and [Dareboost](https://www.dareboost.com/en/home)'s performance monitoring graph
 
 These image types need different settings to deal with different sizes and position:
