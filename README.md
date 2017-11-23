@@ -59,7 +59,7 @@ group :jekyll_plugins do
 end
 ```
 
-Then run `bundle update` to install the gem.
+Then run `bundle` to install the gem.
 
 ## Configuration
 
