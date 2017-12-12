@@ -96,6 +96,17 @@ or
 [Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
 ```
 
+#### `url`
+
+When `url` is set, jekyll-cloudinary will use this url, rather than `site.url` to build image links. This has two key use cases:
+
+1. When your images are stored on different server than where your site is hosted, use the `url` setting to point correctly to them.
+
+2. In development mode, `site.url` is overridden by Jekyll to `localhost:4000`. This has the unfortunate consequence of breaking all
+Cloudinary tagged images on your site, because Cloudinary cannot fetch remotely from your localhost. Jekyll recommends that you run the site in `production` mode as a work around, but this has the consequence of pointing all internal links to your site's domain.
+
+Using the `url` setting you can mitigate this by pointing the loudinary images to the url where they exist, while allowing your development site to still function correctly.
+
 ### Optional (but highly recommended) presets
 
 You can now define the presets you need for your posts' images, starting with the default one:

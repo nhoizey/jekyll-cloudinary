@@ -83,9 +83,9 @@ module Jekyll
 
         # Settings
         site = context.registers[:site]
-        url = site.config["url"]
         baseurl = site.config["baseurl"] || ""
         settings = site.config["cloudinary"]
+        url = settings["url"] || site.config["url"]
 
         # Get Markdown converter
         markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
