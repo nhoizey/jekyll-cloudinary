@@ -3,12 +3,12 @@ require "jekyll/cloudinary/version"
 
 Gem::Specification.new do |spec|
   spec.version = Jekyll::Cloudinary::VERSION
-  spec.homepage = "https://nhoizey.github.io/jekyll-cloudinary/"
-  spec.authors = ["Nicolas Hoizey"]
-  spec.email = ["nicolas@hoizey.com"]
+  spec.homepage = "https://github.com/suprafly/jekyll-cloudinary"
+  spec.authors = ["Chris Lyman (a fork of Nicolas Hoizey's work)"]
+  spec.email = [""]
   spec.files = %W(Rakefile Gemfile README.md LICENSE) + Dir["lib/**/*"]
   spec.summary = "Liquid tag for Jekyll with Cloudinary"
-  spec.name = "jekyll-cloudinary"
+  spec.name = "jekyll-cloudinary-fork"
   spec.license = "MIT"
   spec.has_rdoc = false
   spec.require_paths = ["lib"]
