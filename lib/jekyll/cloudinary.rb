@@ -196,7 +196,7 @@ module Jekyll
           image_dest_path = image_src
           image_dest_url = image_src
           natural_width, natural_height = FastImage.size(image_dest_url)
-          width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
+          # width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
         else
           # It’s a local image
@@ -235,7 +235,7 @@ module Jekyll
           end
           if File.exist?(image_src_path)
             natural_width, natural_height = FastImage.size(image_src_path)
-            width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
+            # width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
             fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
           else
             natural_width = 100_000
