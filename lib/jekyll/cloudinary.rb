@@ -288,6 +288,10 @@ module Jekyll
         end
         srcset_string = srcset.join(",\n")
 
+        if ENV["JEKYLL_ENV"] != "production"
+          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
+        end
+
         # preset['figure'] can be 'never', 'auto' or 'always'
         if (caption || preset["figure"] == "always") && preset["figure"] != "never"
           "\n<figure #{attr_string}>\n<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{img_attr} #{width_height} />\n<figcaption>#{caption}</figcaption>\n</figure>\n"
