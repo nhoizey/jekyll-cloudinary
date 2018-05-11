@@ -218,7 +218,7 @@ module Jekyll
           else
             image_src_path = File.join(
               site.config["source"],
-              File.dirname(context["page"]["path"]),
+              File.dirname(context["page"]["path"].chomp("/#excerpt")),
               image_src
             )
             image_dest_path = File.join(
