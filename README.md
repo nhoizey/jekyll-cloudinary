@@ -11,11 +11,11 @@ You are in full control of the number of generated images and their sizes, and t
 
 Here is the general syntax of this Liquid tag:
 
-{% raw %}
-```markdown
+<!-- {% raw %} -->
+```liquid
 {% cloudinary cloudflare.png alt="Un schéma montrant l'apport de Cloudflare" caption="Un schéma montrant l'apport de Cloudflare" %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -120,11 +120,11 @@ This preset will generate five images 320 to 1600 pixels wide in the `srcset` an
 
 With this preset, you only have to write this in your Markdown post:
 
-{% raw %}
-```markdown
+<!-- {% raw %} -->
+```liquid
 {% cloudinary /assets/img.jpg alt="beautiful!" %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 To get this HTML:
 
@@ -170,11 +170,11 @@ cloudinary:
 
 To use this additional preset, you will have to write this in your Markdown post:
 
-{% raw %}
-```markdown
+<!-- {% raw %} -->
+```liquid
 {% cloudinary onethird /assets/img.jpg %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 The generated element will also get a `class="one3rd"` that can be useful for example with this CSS:
 
@@ -240,12 +240,12 @@ These image types need different settings to deal with different sizes and posit
 
 This is how I use the Cloudinary Liquid tag for the Cloudinary logo and prices table screenshot:
 
-{% raw %}
-```markdown
+<!-- {% raw %} -->
+```liquid
 {% cloudinary logo /assets/logos/cloudinary.png alt="Logo de Cloudinary" %}
 {% cloudinary cloudinary-pricing.png alt="Les tarifs de Cloudinary" caption="Les tarifs de Cloudinary, dont l'offre gratuite déjà généreuse" %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 The only difference is that I explicitly use the `logo` preset for the logo. The other image uses the `default` preset.
 
