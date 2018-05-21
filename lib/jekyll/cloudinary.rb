@@ -90,6 +90,10 @@ module Jekyll
         baseurl = site.config["baseurl"] || ""
         settings = settings_defaults.merge(site.config["cloudinary"])
 
+        if settings["cloud_name"] == ""
+          Jekyll.logger.abort_with("[Cloudinary]", "You must set your cloud_name in _config.yml")
+        end
+
         # Get Markdown converter
         markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
 
