@@ -196,6 +196,10 @@ module Jekyll
           image_dest_path = image_src
           image_dest_url = image_src
           natural_width, natural_height = FastImage.size(image_dest_url)
+          if natural_width.nil?
+            Jekyll.logger.warn("remote url doesn't exists " + image_dest_url)
+            return "<img src=\"#{image_dest_url}\" />"
+          end
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
         else
@@ -287,6 +291,10 @@ module Jekyll
           end
         end
         srcset_string = srcset.join(",\n")
+
+        if ENV["JEKYLL_ENV"] != "production"
+          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
+        end
 
         # preset['figure'] can be 'never', 'auto' or 'always'
         if (caption || preset["figure"] == "always") && preset["figure"] != "never"
