@@ -1,5 +1,14 @@
 # Releases
 
+## [v1.11.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.11.0)
+
+Thanks to [Pascal Brokmeier](https://github.com/pascalwhoop)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/34), you can know have responsive images HTML and Cloudinary URLs generated only when you build for production.
+
+Just make sure to:
+
+- set the new option `only_prod` to `true`
+- and set the environment to `production` before building: `JEKYLL_ENV=production bundle exec jekyll build`
+
 ## [v1.10.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.10.0)
 
 Fixes an issue caused by Jekyll 3.8.1 introducing a change to content's path, adding an `/#excerpt` at the end in case of an excerpt.
