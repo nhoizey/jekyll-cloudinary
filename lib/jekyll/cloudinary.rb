@@ -11,6 +11,10 @@ module Jekyll
 
       def render(context)
         # Default settings
+        settings_defaults = {
+          "cloud_name"         => "",
+          "verbose"            => false,
+        }
         preset_defaults = {
           "min_width"          => 320,
           "max_width"          => 1200,
@@ -19,7 +23,6 @@ module Jekyll
           "sizes"              => "100vw",
           "figure"             => "auto",
           "attributes"         => {},
-          "verbose"            => false,
           "width_height"       => true,
           # Cloudinary transformations
           "height"             => false,
@@ -85,7 +88,7 @@ module Jekyll
         site = context.registers[:site]
         url = site.config["url"]
         baseurl = site.config["baseurl"] || ""
-        settings = site.config["cloudinary"]
+        settings = settings_defaults.merge(site.config["cloudinary"])
 
         # Get Markdown converter
         markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
