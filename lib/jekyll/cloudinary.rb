@@ -260,6 +260,11 @@ module Jekyll
           end
         end
 
+        # Don't generate responsive image HTML and Cloudinary URLs for local development
+        if settings["only_prod"] && ENV["JEKYLL_ENV"] != "production"
+          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
+        end
+
         srcset = []
         steps = preset["steps"].to_i
         min_width = preset["min_width"].to_i
@@ -299,10 +304,6 @@ module Jekyll
           end
         end
         srcset_string = srcset.join(",\n")
-
-        if settings["only_prod"] && ENV["JEKYLL_ENV"] != "production"
-          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
-        end
 
         # preset['figure'] can be 'never', 'auto' or 'always'
         if (caption || preset["figure"] == "always") && preset["figure"] != "never"
