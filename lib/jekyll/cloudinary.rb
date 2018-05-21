@@ -13,6 +13,7 @@ module Jekyll
         # Default settings
         settings_defaults = {
           "cloud_name"         => "",
+          "only_prod"          => false,
           "verbose"            => false,
         }
         preset_defaults = {
@@ -299,7 +300,7 @@ module Jekyll
         end
         srcset_string = srcset.join(",\n")
 
-        if ENV["JEKYLL_ENV"] != "production"
+        if settings["only_prod"] && ENV["JEKYLL_ENV"] != "production"
           return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
         end
 

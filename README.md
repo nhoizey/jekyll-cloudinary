@@ -25,6 +25,7 @@ Here is the general syntax of this Liquid tag:
 - [Configuration](#configuration)
   - [Mandatory settings](#mandatory-settings)
   - [Optional global settings](#optional-global-settings)
+    - [`only_prod` (default: `false`)](#only_prod-default-false)
     - [`verbose` (default: `false`)](#verbose-default-false)
   - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
     - [Default preset](#default-preset)
@@ -79,8 +80,22 @@ You can now define some global settings
 ```yaml
 cloudinary:
   …
+  only_prod: true
   verbose: true
 ```
+
+#### `only_prod` (default: `false`)
+
+When set to `true`, this setting implies that responsive image HTML and Cloudinary URLs are generated only if the environnement is `production`.
+
+For example:
+
+- if you run `JEKYLL_ENV=production bundle exec jekyll build`, you'll get the code to deploy, with `srcset` and Cloudinary URLs.
+- if you run `JEKYLL_ENV=development bundle exec jekyll serve`, you'll get code for local development, with standard `<img src="…">` code and local URLs.
+
+[`JEKYLL_ENV=development` is the default value](https://jekyllrb.com/docs/configuration/#specifying-a-jekyll-environment-at-build-time).
+
+If you don't set `only_prod` or set it to `false`, responsive image HTML and Cloudinary URLs are always generated, whatever the environment. jekyll-cloudinary had only this behavior before version 1.11.0.
 
 #### `verbose` (default: `false`)
 
