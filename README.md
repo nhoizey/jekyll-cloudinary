@@ -39,7 +39,7 @@ Here is the general syntax of this Liquid tag:
     - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
     - [`attributes` (default: none)](#attributes-default-none)
 - [Live example](#live-example)
-- [To do](#to-do)
+- [Contributing](#contributing)
 - [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
