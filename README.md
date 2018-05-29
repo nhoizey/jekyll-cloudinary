@@ -80,6 +80,7 @@ You can now define some global settings
 cloudinary:
   …
   verbose: true
+  origin_url: https://another-domain.com
 ```
 
 #### `verbose` (default: `false`)
@@ -98,14 +99,9 @@ or
 
 #### `origin_url`
 
-When `origin_url` is set, jekyll-cloudinary will use this url, rather than `site.url` to build image links. This has two key use cases:
+When `origin_url` is set, jekyll-cloudinary will use this URL rather than `site.url` as origin of the source images.
 
-1. When your images are stored on different server than where your site is hosted, use the `origin_url` setting to point correctly to them.
-
-2. In development mode, `site.url` is overridden by Jekyll to `localhost:4000`. This has the unfortunate consequence of breaking all
-Cloudinary tagged images on your site, because Cloudinary cannot fetch remotely from your localhost. Jekyll recommends that you run the site in `production` mode as a work around, but this has the consequence of pointing all internal links to your site's domain.
-
-Using the `origin_url` setting you can mitigate this by pointing the loudinary images to the URL where they exist, while allowing your development site to still function correctly.
+This allows you to store your source image on a different domain than your website.
 
 ### Optional (but highly recommended) presets
 
