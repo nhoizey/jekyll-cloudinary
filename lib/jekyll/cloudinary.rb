@@ -87,12 +87,13 @@ module Jekyll
 
         # Settings
         site = context.registers[:site]
-        baseurl = site.config["baseurl"] || ""
+        site_url = site.config["url"] || ""
+        site_baseurl = site.config["baseurl"] || ""
         settings = settings_defaults.merge(site.config["cloudinary"])
         if settings["cloud_name"] == ""
           Jekyll.logger.abort_with("[Cloudinary]", "You must set your cloud_name in _config.yml")
         end
-        url = settings["origin_url"] || site.config["url"]
+        url = settings["origin_url"] || (site_url + site_baseurl)
 
         # Get Markdown converter
         markdown_converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
@@ -223,7 +224,6 @@ module Jekyll
             )
             image_dest_url = File.join(
               url,
-              baseurl,
               image_src
             )
           else
@@ -239,7 +239,6 @@ module Jekyll
             )
             image_dest_url = File.join(
               url,
-              baseurl,
               File.dirname(context["page"]["url"]),
               image_src
             )
