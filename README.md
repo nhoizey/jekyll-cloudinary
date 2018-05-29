@@ -82,6 +82,7 @@ cloudinary:
   …
   only_prod: true
   verbose: true
+  origin_url: https://another-domain.com
 ```
 
 #### `only_prod` (default: `false`)
@@ -110,6 +111,12 @@ or
 ```
 [Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
 ```
+
+#### `origin_url`
+
+When `origin_url` is set, jekyll-cloudinary will use this URL rather than `site.url` as origin of the source images.
+
+This allows you to store your source image on a different domain than your website.
 
 ### Optional (but highly recommended) presets
 
