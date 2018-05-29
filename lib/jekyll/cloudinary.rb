@@ -11,6 +11,11 @@ module Jekyll
 
       def render(context)
         # Default settings
+        settings_defaults = {
+          "cloud_name"         => "",
+          "only_prod"          => false,
+          "verbose"            => false,
+        }
         preset_defaults = {
           "min_width"          => 320,
           "max_width"          => 1200,
@@ -19,7 +24,6 @@ module Jekyll
           "sizes"              => "100vw",
           "figure"             => "auto",
           "attributes"         => {},
-          "verbose"            => false,
           "width_height"       => true,
           # Cloudinary transformations
           "height"             => false,
@@ -84,7 +88,10 @@ module Jekyll
         # Settings
         site = context.registers[:site]
         baseurl = site.config["baseurl"] || ""
-        settings = site.config["cloudinary"]
+        settings = settings_defaults.merge(site.config["cloudinary"])
+        if settings["cloud_name"] == ""
+          Jekyll.logger.abort_with("[Cloudinary]", "You must set your cloud_name in _config.yml")
+        end
         url = settings["origin_url"] || site.config["url"]
 
         # Get Markdown converter
@@ -196,6 +203,10 @@ module Jekyll
           image_dest_path = image_src
           image_dest_url = image_src
           natural_width, natural_height = FastImage.size(image_dest_url)
+          if natural_width.nil?
+            Jekyll.logger.warn("remote url doesn't exists " + image_dest_url)
+            return "<img src=\"#{image_dest_url}\" />"
+          end
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
         else
@@ -218,7 +229,7 @@ module Jekyll
           else
             image_src_path = File.join(
               site.config["source"],
-              File.dirname(context["page"]["path"]),
+              File.dirname(context["page"]["path"].chomp("/#excerpt")),
               image_src
             )
             image_dest_path = File.join(
@@ -246,6 +257,11 @@ module Jekyll
             )
             fallback_url = image_dest_url
           end
+        end
+
+        # Don't generate responsive image HTML and Cloudinary URLs for local development
+        if settings["only_prod"] && ENV["JEKYLL_ENV"] != "production"
+          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
         end
 
         srcset = []
