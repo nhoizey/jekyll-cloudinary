@@ -1,8 +1,12 @@
 # Releases
 
+## [v1.12.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.12.0)
+
+Thanks to [@suprafly](https://github.com/suprafly)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/29), you can now host your source images on an origin domain different from your website domain.
+
 ## [v1.11.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.11.0)
 
-Thanks to [Pascal Brokmeier](https://github.com/pascalwhoop)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/34), you can know have responsive images HTML and Cloudinary URLs generated only when you build for production.
+Thanks to [Pascal Brokmeier](https://github.com/pascalwhoop)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/34), you can now have responsive images HTML and Cloudinary URLs generated only when you build for production.
 
 Just make sure to:
 
