@@ -1,2 +1,30 @@
 inherit_gem:
   jekyll: .rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - script/**/*
+    - vendor/**/*
+
+Lint/UselessAssignment:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/AbcSize:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/BlockNesting:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/LineLength:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/MethodLength:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/jekyll/cloudinary.rb

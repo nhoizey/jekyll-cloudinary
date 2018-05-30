@@ -25,6 +25,7 @@ Here is the general syntax of this Liquid tag:
 - [Configuration](#configuration)
   - [Mandatory settings](#mandatory-settings)
   - [Optional global settings](#optional-global-settings)
+    - [`only_prod` (default: `false`)](#only_prod-default-false)
     - [`verbose` (default: `false`)](#verbose-default-false)
   - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
     - [Default preset](#default-preset)
@@ -38,7 +39,7 @@ Here is the general syntax of this Liquid tag:
     - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
     - [`attributes` (default: none)](#attributes-default-none)
 - [Live example](#live-example)
-- [To do](#to-do)
+- [Contributing](#contributing)
 - [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -79,8 +80,23 @@ You can now define some global settings
 ```yaml
 cloudinary:
   …
+  only_prod: true
   verbose: true
+  origin_url: https://another-domain.com
 ```
+
+#### `only_prod` (default: `false`)
+
+When set to `true`, this setting implies that responsive image HTML and Cloudinary URLs are generated only if the environnement is `production`.
+
+For example:
+
+- if you run `JEKYLL_ENV=production bundle exec jekyll build`, you'll get the code to deploy, with `srcset` and Cloudinary URLs.
+- if you run `JEKYLL_ENV=development bundle exec jekyll serve`, you'll get code for local development, with standard `<img src="…">` code and local URLs.
+
+[`JEKYLL_ENV=development` is the default value](https://jekyllrb.com/docs/configuration/#specifying-a-jekyll-environment-at-build-time).
+
+If you don't set `only_prod` or set it to `false`, responsive image HTML and Cloudinary URLs are always generated, whatever the environment. jekyll-cloudinary had only this behavior before version 1.11.0.
 
 #### `verbose` (default: `false`)
 
@@ -95,6 +111,12 @@ or
 ```
 [Cloudinary] Natural width of source image 'img.jpg' (720px) in _posts/2016-06-09-post.md not enough for creating 1600px version
 ```
+
+#### `origin_url`
+
+When `origin_url` is set, jekyll-cloudinary will use this URL rather than `site.url` as origin of the source images.
+
+This allows you to store your source image on a different domain than your website.
 
 ### Optional (but highly recommended) presets
 
@@ -342,9 +364,9 @@ article {
 }
 ```
 
-## To do
+## Contributing
 
-There are already [a few issues for bugs and things that should be added to the plugin](https://github.com/nhoizey/jekyll-cloudinary/issues), feel free to add your ideas!
+Thanks for your interest in contributing! There are many ways to contribute to this project. Get started here (https://github.com/nhoizey/jekyll-cloudinary/blob/master/CONTRIBUTING.md).
 
 ## Do you use the plugin on a live site?
 
