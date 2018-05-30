@@ -1,5 +1,9 @@
 # Releases
 
+## [v1.12.2](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.2)
+
+Match jekyll's coding style thanks to [@DirtyF](https://github.com/DirtyF) with a little help from [Rubocop](http://rubocop.readthedocs.io/).
+
 ## [v1.12.1](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.1)
 
 Break early if there is no `cloud_name` in `_config.yml`.
