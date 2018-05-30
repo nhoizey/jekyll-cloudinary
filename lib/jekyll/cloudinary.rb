@@ -89,6 +89,9 @@ module Jekyll
         site = context.registers[:site]
         site_url = site.config["url"] || ""
         site_baseurl = site.config["baseurl"] || ""
+        if site.config["cloudinary"].nil?
+          Jekyll.logger.abort_with("[Cloudinary]", "You must set your cloud_name in _config.yml")
+        end
         settings = settings_defaults.merge(site.config["cloudinary"])
         if settings["cloud_name"] == ""
           Jekyll.logger.abort_with("[Cloudinary]", "You must set your cloud_name in _config.yml")

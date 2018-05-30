@@ -1,10 +1,14 @@
 # Releases
 
-## [v1.12.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.12.0)
+## [v1.12.1](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.1)
+
+Break early if there is no `cloud_name` in `_config.yml`.
+
+## [v1.12.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.0)
 
 Thanks to [@suprafly](https://github.com/suprafly)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/29), you can now host your source images on an origin domain different from your website domain.
 
-## [v1.11.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.11.0)
+## [v1.11.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.11.0)
 
 Thanks to [Pascal Brokmeier](https://github.com/pascalwhoop)'s [Pull Request](https://github.com/nhoizey/jekyll-cloudinary/pull/34), you can now have responsive images HTML and Cloudinary URLs generated only when you build for production.
 
@@ -13,21 +17,21 @@ Just make sure to:
 - set the new option `only_prod` to `true`
 - and set the environment to `production` before building: `JEKYLL_ENV=production bundle exec jekyll build`
 
-## [v1.10.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.10.0)
+## [v1.10.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.10.0)
 
 Fixes an issue caused by Jekyll 3.8.1 introducing a change to content's path, adding an `/#excerpt` at the end in case of an excerpt.
 
 See https://github.com/nhoizey/jekyll-cloudinary/commit/5372e37e4d31bf1934d90665692b9e14f2ac2147
 
-## [v1.9.1](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.9.1)
+## [v1.9.1](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.9.1)
 
 Better warning message when the local source image is missing.
 
-## [v1.9.0](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.9.0)
+## [v1.9.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.9.0)
 
 Get the dimensions of the picture from the source path instead of the destination one ([#19](https://github.com/nhoizey/jekyll-cloudinary/issues/19))
 
-## [v1.8.1](https://github.com/nhoizey/jekyll-cloudinary/tree/v1.8.1)
+## [v1.8.1](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.8.1)
 
 Fixes an issue with local images.
 
