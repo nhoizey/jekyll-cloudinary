@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Jekyll
   module Cloudinary
 
@@ -52,37 +54,37 @@ module Jekyll
           "page"               => false,
           "density"            => false,
           "flags"              => false,
-          "transformation"     => false
+          "transformation"     => false,
         }
 
         # TODO: Add validation for this parameters
         transformation_options = {
-          "height"             => "h",
-          "crop"               => "c", # can include add-on: imagga_scale
-          "aspect_ratio"       => "ar",
-          "gravity"            => "g",
-          "zoom"               => "z",
-          "x"                  => "x",
-          "y"                  => "y",
-          "fetch_format"       => "f",
-          "quality"            => "q", # can include add-on: jpegmini
-          "radius"             => "r",
-          "angle"              => "a",
-          "effect"             => "e", # can include add-on: viesus_correct
-          "opacity"            => "o",
-          "border"             => "bo",
-          "background"         => "b",
-          "overlay"            => "l",
-          "underlay"           => "u",
-          "default_image"      => "d",
-          "delay"              => "dl",
-          "color"              => "co",
-          "color_space"        => "cs",
-          "dpr"                => "dpr",
-          "page"               => "pg",
-          "density"            => "dn",
-          "flags"              => "fl",
-          "transformation"     => "t"
+          "height"         => "h",
+          "crop"           => "c", # can include add-on: imagga_scale
+          "aspect_ratio"   => "ar",
+          "gravity"        => "g",
+          "zoom"           => "z",
+          "x"              => "x",
+          "y"              => "y",
+          "fetch_format"   => "f",
+          "quality"        => "q", # can include add-on: jpegmini
+          "radius"         => "r",
+          "angle"          => "a",
+          "effect"         => "e", # can include add-on: viesus_correct
+          "opacity"        => "o",
+          "border"         => "bo",
+          "background"     => "b",
+          "overlay"        => "l",
+          "underlay"       => "u",
+          "default_image"  => "d",
+          "delay"          => "dl",
+          "color"          => "co",
+          "color_space"    => "cs",
+          "dpr"            => "dpr",
+          "page"           => "pg",
+          "density"        => "dn",
+          "flags"          => "fl",
+          "transformation" => "t",
         }
 
         # Settings
@@ -114,7 +116,7 @@ module Jekyll
         rendered_markup = Liquid::Template
           .parse(@markup)
           .render(context)
-          .gsub(%r!\\\{\\\{|\\\{\\%!, '\{\{' => '{{', '\{\%' => '{%')
+          .gsub(%r!\\\{\\\{|\\\{\\%!, '\{\{' => "{{", '\{\%' => "{%")
 
         # Extract tag segments
         markup =
@@ -129,7 +131,7 @@ module Jekyll
 
         # Dynamic image type
         type = "fetch"
-        # TODO: URL2PNG requires signed URLs… need to investigate more
+        # TODO: URL2PNG requires signed URLs... need to investigate more
         # if /^url2png\:/.match(image_src)
         #   type = "url2png"
         #   image_src.gsub! "url2png:", ""
@@ -191,19 +193,19 @@ module Jekyll
         # Figure out the Cloudinary transformations
         transformations = []
         transformations_string = ""
-        transformation_options.each do | key, shortcode |
+        transformation_options.each do |key, shortcode|
           if preset[key]
             transformations << "#{shortcode}_#{preset[key]}"
           end
         end
-        if transformations.length > 0
-          transformations_string = transformations.compact.reject(&:empty?).join(',') + ","
+        unless transformations.empty?
+          transformations_string = transformations.compact.reject(&:empty?).join(",") + ","
         end
 
         # Build source image URL
-        is_image_remote = /^https?/.match(image_src)
+        is_image_remote = %r!^https?!.match(image_src)
         if is_image_remote
-          # It’s remote
+          # It's remote
           image_dest_path = image_src
           image_dest_url = image_src
           natural_width, natural_height = FastImage.size(image_dest_url)
@@ -214,7 +216,7 @@ module Jekyll
           width_height = "width=\"#{natural_width}\" height=\"#{natural_height}\""
           fallback_url = "https://res.cloudinary.com/#{settings["cloud_name"]}/image/#{type}/#{transformations_string}w_#{preset["fallback_max_width"]}/#{image_dest_url}"
         else
-          # It’s a local image
+          # It's a local image
           is_image_src_absolute = %r!^/.*$!.match(image_src)
           if is_image_src_absolute
             image_src_path = File.join(
