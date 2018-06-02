@@ -178,7 +178,7 @@ module Jekyll
         end
 
         # alt and title attributes should go only to the <img> even when there is a caption
-        img_attr = ""
+        img_attr = "".dup
         if html_attr["alt"]
           img_attr << " alt=\"#{html_attr["alt"]}\""
           html_attr.delete("alt")
