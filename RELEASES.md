@@ -1,5 +1,9 @@
 # Releases
 
+## [v1.12.3](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.3)
+
+Strings are now immutable by default, be careful. ([ca68ba7](https://github.com/nhoizey/jekyll-cloudinary/commit/ca68ba7743b69983836b993761d1004494197795))
+
 ## [v1.12.2](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.2)
 
 Match jekyll's coding style thanks to [@DirtyF](https://github.com/DirtyF) with a little help from [Rubocop](http://rubocop.readthedocs.io/).
