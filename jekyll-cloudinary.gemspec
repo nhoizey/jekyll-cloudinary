@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.homepage = "https://nhoizey.github.io/jekyll-cloudinary/"
   spec.authors = ["Nicolas Hoizey"]
   spec.email = ["nicolas@hoizey.com"]
-  spec.files = %w(Rakefile Gemfile README.md LICENSE) + Dir["lib/**/*"]
+  spec.files = %w(Rakefile Gemfile README.md RELEASES.md LICENSE) + Dir["lib/**/*"]
   spec.summary = "Liquid tag for Jekyll with Cloudinary"
   spec.name = "jekyll-cloudinary"
   spec.license = "MIT"
