@@ -1,5 +1,9 @@
 # Releases
 
+## [v1.12.4](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.4)
+
+Improving gem summary and description to help people find it. There was no mention of "plugin" in it… 🤔
+
 ## [v1.12.3](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.3)
 
 Strings are now immutable by default, be careful. ([ca68ba7](https://github.com/nhoizey/jekyll-cloudinary/commit/ca68ba7743b69983836b993761d1004494197795))

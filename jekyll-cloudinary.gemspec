@@ -9,12 +9,14 @@ Gem::Specification.new do |spec|
   spec.authors = ["Nicolas Hoizey"]
   spec.email = ["nicolas@hoizey.com"]
   spec.files = %w(Rakefile Gemfile README.md RELEASES.md LICENSE) + Dir["lib/**/*"]
-  spec.summary = "Liquid tag for Jekyll with Cloudinary"
+  spec.summary = "Jekyll plugin adding a Liquid tag for Cloudinary, for better responsive images"
   spec.name = "jekyll-cloudinary"
   spec.license = "MIT"
   spec.require_paths = ["lib"]
   spec.description = <<-DESC
-    Liquid tag to use Cloudinary for optimized responsive posts images.
+    This Jekyll plugin adds a Liquid tag that helps using Cloudinary, a SaaS solution for images management and transformation.
+
+    It helps using responsive images (picture, srcset, etc.) to optimize performance of websites.
   DESC
 
   spec.add_runtime_dependency "fastimage", "~> 2.0"
