@@ -1,5 +1,10 @@
 # Releases
 
+## [v1.13.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.13.0)
+
+Add cross-origin support to prevent opaque responses in Service Workers. See
+https://cloudfour.com/thinks/when-7-kb-equals-7-mb/
+
 ## [v1.12.4](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.4)
 
 Improving gem summary and description to help people find it. There was no mention of "plugin" in it… 🤔
