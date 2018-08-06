@@ -265,7 +265,7 @@ module Jekyll
 
         # Don't generate responsive image HTML and Cloudinary URLs for local development
         if settings["only_prod"] && ENV["JEKYLL_ENV"] != "production"
-          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height}/>"
+          return "<img src=\"#{image_dest_url}\" #{attr_string} #{img_attr} #{width_height} crossorigin=\"anonymous\" />"
         end
 
         srcset = []
@@ -312,7 +312,7 @@ module Jekyll
         if (caption || preset["figure"] == "always") && preset["figure"] != "never"
           "\n<figure #{attr_string}>\n<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{img_attr} #{width_height} />\n<figcaption>#{caption}</figcaption>\n</figure>\n"
         else
-          "<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{attr_string} #{img_attr} #{width_height} />"
+          "<img src=\"#{fallback_url}\" srcset=\"#{srcset_string}\" sizes=\"#{sizes}\" #{attr_string} #{img_attr} #{width_height} crossorigin=\"anonymous\" />"
         end
       end
     end
