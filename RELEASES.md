@@ -2,8 +2,9 @@
 
 ## [v1.13.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.13.0)
 
-Add cross-origin support to prevent opaque responses in Service Workers. See
-https://cloudfour.com/thinks/when-7-kb-equals-7-mb/
+Add cross-origin support to prevent opaque responses in Service Workers.
+
+See https://cloudfour.com/thinks/when-7-kb-equals-7-mb/
 
 ## [v1.12.4](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.12.4)
 
