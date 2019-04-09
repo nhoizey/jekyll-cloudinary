@@ -13,7 +13,7 @@ Here is the general syntax of this Liquid tag:
 
 <!-- {% raw %} -->
 ```liquid
-{% cloudinary cloudflare.png alt="Un schéma montrant l'apport de Cloudflare" caption="Un schéma montrant l'apport de Cloudflare" %}
+{% cloudinary cloudflare.png alt="Un schéma montrant l'apport de Cloudflare" caption="Un schéma montrant l'apport de Cloudflare" loading="lazy" %}
 ```
 <!-- {% endraw %} -->
 
@@ -27,6 +27,7 @@ Here is the general syntax of this Liquid tag:
   - [Optional global settings](#optional-global-settings)
     - [`only_prod` (default: `false`)](#only_prod-default-false)
     - [`verbose` (default: `false`)](#verbose-default-false)
+    - [`origin_url`](#origin_url)
   - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
     - [Default preset](#default-preset)
     - [Additional presets](#additional-presets)
@@ -38,6 +39,10 @@ Here is the general syntax of this Liquid tag:
     - [`steps` (default: `5`)](#steps-default-5)
     - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
     - [`attributes` (default: none)](#attributes-default-none)
+- [Liquid tag attributes](#liquid-tag-attributes)
+  - [Recommended attributes](#recommended-attributes)
+  - [Loading attribute](#loading-attribute)
+  - [Other interesting attributes](#other-interesting-attributes)
 - [Live example](#live-example)
 - [Contributing](#contributing)
 - [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
@@ -188,6 +193,7 @@ cloudinary:
       sizes: "(min-width: 50rem) 17rem, 30vw"
       attributes:
         class: "one3rd"
+        loading: "lazy"
 ```
 
 To use this additional preset, you will have to write this in your Markdown post:
@@ -220,7 +226,7 @@ The value can be:
 - `never`: will always generate a `<img>`, losing the caption
 - `always`: will always generate a `<figure>` and `<figcaption>`, even if there's no `caption` attribute
 
-If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt`, `title` or `loading` (see [v1.14.0 release](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.14.0)), or to the `<figure>`.
+If a `<figure>` is generated and there are attributes (in the preset or the Liquid tag), they are added to the `<img>` if they are `alt`, `title` or `loading`, or to the `<figure>`.
 
 #### `min_width` (default: `320`)
 
@@ -234,13 +240,50 @@ If a `<figure>` is generated and there are attributes in the Liquid tag, they ar
 
 #### `attributes` (default: none)
 
-Attributes are added without transformation to the generated element.
+You can define attributes that will be added to all images using this preset. Attributes are added without transformation to the generated element.
 
-You can obviously define the `alt` attribute, mandatory for accessibility, but you can also set a `title`, a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
+You should obviously not add to preset attributes that should have different values for each image, such as `alt`, `caption`, `title`, etc.
 
-The `caption` attribute is the only one that can act differently, depending on the `figure` setting.
+You can set a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
 
-`alt`, `title` and `caption` attributes can contain Markdown.
+## Liquid tag attributes
+
+You can add attributes to the liquid tag, after the image path:
+
+<!-- {% raw %} -->
+```liquid
+{% cloudinary onethird /assets/selfie.jpg alt="My selfie" loading="eager" %}
+```
+<!-- {% endraw %} -->
+
+Just like the ones from the preset settings, inline attributes are added without transformation to the generated element.
+
+### Recommended attributes
+
+You should obviously define the `alt` attribute, mandatory for accessibility.
+
+If you want the image to be inside a `figure` element, you probably also want to add a `caption` attribute. This is the only one that can act differently than other attributes, depending on [the `figure` setting](#figure-default-auto).
+
+You can also set a `title` attribute, but there are really few use cases for it on images.
+
+`alt`, `caption` and `title` attributes can contain Markdown.
+
+### Loading attribute
+
+The `loading` attribute allows you to tell the browser how you want it to load this image.
+
+From [this article written by Addy Osmani](https://addyosmani.com/blog/lazy-loading/):
+
+> The loading attribute allows a browser to defer loading offscreen images and iframes until users scroll near them. loading supports three values:
+> - `lazy`: is a good candidate for lazy loading.
+> - `eager`: is not a good candidate for lazy loading. Load right away.
+> - `auto`: browser will determine whether or not to lazily load.
+> 
+> Not specifying the attribute at all will have the same impact as setting loading=auto.
+
+### Other interesting attributes
+
+You can also use attributes to add a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
 
 ## Live example
 
