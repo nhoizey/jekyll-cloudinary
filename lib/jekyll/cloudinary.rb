@@ -187,6 +187,10 @@ module Jekyll
           img_attr << " title=\"#{html_attr["title"]}\""
           html_attr.delete("title")
         end
+        if html_attr["loading"]
+          img_attr << " loading=\"#{html_attr["loading"]}\""
+          html_attr.delete("loading")
+        end
 
         attr_string = html_attr.map { |a, v| "#{a}=\"#{v}\"" }.join(" ")
 
