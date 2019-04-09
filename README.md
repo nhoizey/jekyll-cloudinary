@@ -220,7 +220,7 @@ The value can be:
 - `never`: will always generate a `<img>`, losing the caption
 - `always`: will always generate a `<figure>` and `<figcaption>`, even if there's no `caption` attribute
 
-If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt` or `title`, or to the `<figure>`.
+If a `<figure>` is generated and there are attributes in the Liquid tag, they are added to the `<img>` if they are `alt`, `title` or `loading` (see [v1.14.0 release](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.14.0)), or to the `<figure>`.
 
 #### `min_width` (default: `320`)
 
