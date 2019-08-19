@@ -1,5 +1,15 @@
 # Releases
 
+## [v1.14.1](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.14.1)
+
+Fix the loading attribute handling.
+
+## [v1.14.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.14.0)
+
+Add support for the loading attribute, for [native lazy loading](https://addyosmani.com/blog/lazy-loading/) (Thanks [@borisschapira](https://github.com/borisschapira))
+
+Read [the documentation for the loading attribute](https://github.com/nhoizey/jekyll-cloudinary/blob/master/README.md#loading-attribute).
+
 ## [v1.13.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.13.0)
 
 Add cross-origin support to prevent opaque responses in Service Workers.
