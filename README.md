@@ -247,10 +247,12 @@ You should obviously not add to preset attributes that should have different val
 You can set a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
 
 Also it's possible to pass liquid variables inside the tags, so for example if you have your picture path in the front matter (in the post markdown file), you can send it to Cloudinary Plugin, such as:
-``` 
+
+<!-- {% raw %} -->
+```liquid
 {% cloudinary {{page.thumbnail}} class="post-image" itemprop="image" alt="{{page.title}} image"%}
 ```
-
+<!-- {% endraw %} -->
 
 ## Liquid tag attributes
 
