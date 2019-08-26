@@ -4,6 +4,8 @@
 
 Fix the loading attribute handling.
 
+Add compatibility with Jekyll 4 (thanks [@DirtyF](https://github.com/DirtyF))
+
 ## [v1.14.0](https://github.com/nhoizey/jekyll-cloudinary/releases/tag/v1.14.0)
 
 Add support for the loading attribute, for [native lazy loading](https://addyosmani.com/blog/lazy-loading/) (Thanks [@borisschapira](https://github.com/borisschapira))
