@@ -255,7 +255,7 @@ For example, if you have the picture path in a `thumbnail` attribute of the YAML
 
 <!-- {% raw %} -->
 ```liquid
-{% cloudinary {{ page.thumbnail }} alt="{{ page.title }} image"%}
+{% cloudinary {{ page.thumbnail }} alt="{{ page.title }} image" %}
 ```
 <!-- {% endraw %} -->
 
