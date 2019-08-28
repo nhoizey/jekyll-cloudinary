@@ -39,6 +39,7 @@ Here is the general syntax of this Liquid tag:
     - [`steps` (default: `5`)](#steps-default-5)
     - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
     - [`attributes` (default: none)](#attributes-default-none)
+- [Liquid tag values](#liquid-tag-values)
 - [Liquid tag attributes](#liquid-tag-attributes)
   - [Recommended attributes](#recommended-attributes)
   - [Loading attribute](#loading-attribute)
@@ -246,11 +247,15 @@ You should obviously not add to preset attributes that should have different val
 
 You can set a `class`, `aria-*` attributes for enhanced accessibility, or even `data-*` attributes you would like to use later with CSS or JavaScript.
 
-Also it's possible to pass liquid variables inside the tags, so for example if you have your picture path in the front matter (in the post markdown file), you can send it to Cloudinary Plugin, such as:
+## Liquid tag values
+
+You can use liquid variables inside the liquid tag.
+
+For example, if you have the picture path in a `thumbnail` attribute of the YAML Front Matter, you can use it in the tag:
 
 <!-- {% raw %} -->
 ```liquid
-{% cloudinary {{page.thumbnail}} class="post-image" itemprop="image" alt="{{page.title}} image"%}
+{% cloudinary {{ page.thumbnail }} alt="{{ page.title }} image"%}
 ```
 <!-- {% endraw %} -->
 
