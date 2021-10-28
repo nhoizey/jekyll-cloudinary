@@ -2,10 +2,21 @@ inherit_gem:
   jekyll: .rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion:  2.6
   Exclude:
     - script/**/*
     - vendor/**/*
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
 
 Lint/UselessAssignment:
   Exclude:
