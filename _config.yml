@@ -1,1 +1,18 @@
-theme: jekyll-theme-cayman
+title: Jekyll Cloudinary Plugin
+description: Jekyll plugin providing Cloudinary-powered responsive image generation
+
+timezone: America/Vancouver
+
+exclude: ["vendor/", "node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile","normalize.scss.md"]
+
+remote_theme: pmarsceill/just-the-docs
+
+color_scheme: dark
+
+# Aux links for the upper right navigation
+aux_links:
+  "Source for Jekyll Cloudinary Plugin":
+    - "//github.com/mavaddat/jekyll-cloudinary"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false

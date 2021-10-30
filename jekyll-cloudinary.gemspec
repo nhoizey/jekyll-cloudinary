@@ -11,12 +11,12 @@ Gem::Specification.new do |spec|
   spec.files = %w(Rakefile Gemfile README.md RELEASES.md LICENSE) + Dir["lib/**/*"]
   spec.summary       = "Jekyll plugin providing Cloudinary-powered responsive image generation"
   spec.description   = <<-DESC
-  A Jekyll-native (Liquid markup) `Cloudinary` tag that can generate responsive images with breakpoints, automatically:
+  A plugin to enable a Jekyll-native (Liquid markup) `Cloudinary` tag that generates responsive images srcsets from an optimal number of versions for every image. It does this by finding the minimum number of image versions per file size reductions between each version. The set of breakpoints are based on a difference in the actual image file size at different widths. This means: 
    - Deciding which image resolutions to select 
    - Calculating how many different image versions to include
-  These are 'responsive breakpoints' or 'responsive image breakpoints'.
+  Devs call these 'responsive breakpoints' or 'responsive image breakpoints'.
 
-  Breakpoints for responsive design allows the same images to be displayed in various dimensions. One image for all screen resolutions and different devices is not enough. This tool uploads one image and dynamically resizes it to match different screen sizes.
+  Breakpoints for responsive design allow the same images to be displayed in various dimensions. One image for all screen resolutions and different devices is leads to cache or packet inefficiencies. This tool uploads one image and dynamically resizes it to match different screen sizes.
   DESC
   spec.homepage      = "https://mavaddat.github.io/jekyll-cloudinary/"
   spec.license       = "MIT"
@@ -39,9 +39,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "fastimage"
-  spec.add_runtime_dependency "jekyll"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_runtime_dependency "fastimage", "~> 2.2"
+  spec.add_runtime_dependency "jekyll", "~> 4.2"
+  spec.add_development_dependency "rake", "~> 13.06"
+  spec.add_development_dependency "rubocop", "~> 1.22"
+  spec.add_development_dependency "rspec", "~> 3.10"
 end
