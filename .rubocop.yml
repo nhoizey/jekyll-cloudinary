@@ -1,5 +1,3 @@
-inherit_from: ./.rubocop_todo.yml
-
 inherit_gem:
   jekyll: .rubocop.yml
 
@@ -22,9 +20,14 @@ Layout/LineLength:
     - lib/jekyll/cloudinary.rb
   Max: 120
 
+Layout/EndOfLine:
+  Exclude:
+    - 'jekyll-cloudinary/bin/console'
+
 Lint/UselessAssignment:
   Exclude:
     - lib/jekyll/cloudinary.rb
+
 Metrics/AbcSize:
   Exclude:
     - lib/jekyll/cloudinary.rb
