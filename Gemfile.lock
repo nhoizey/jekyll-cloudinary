@@ -122,6 +122,7 @@ GEM
 
 PLATFORMS
   universal-darwin-8
+  x64-mingw-ucrt
   x64-mingw32
   x86_64-darwin-19
   x86_64-linux
