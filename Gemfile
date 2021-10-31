@@ -8,5 +8,8 @@ gem "jekyll", "~> 4.2"
 
 gem "rake", "~> 13.0"
 
-gem "rubocop", "~> 1.21"
-gem "rubocop-performance"
+group :rubocop do
+  gem "rubocop", "~> 1.21", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+end
