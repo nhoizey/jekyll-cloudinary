@@ -1,36 +1,33 @@
-name: Ruby
+name: RuboCop
 
-on:
-  push:
-    branches:
-      - main
-
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
+strategy:
       matrix:
         ruby:
           - 3.0.2
 
     steps:
-    - name: Set up Ruby
+    - uses: actions/checkout@v2
+    - name: Set up Ruby ${{ matrix.ruby }}
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-# Use GitHub Actions' cache to shorten build times and decrease load on servers
-    - uses: actions/cache@v2
+    - name: Cache gems
+      uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+        key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-gems-
-    - uses: actions/checkout@v2
-    - name: RuboCop Linter Action
-      uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
-    - name: Run the default task
-      run: bundle exec rake
+          ${{ runner.os }}-rubocop-
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle config set without 'default doc job cable storage ujs test db'
+        bundle install --jobs 4 --retry 3
+    - name: Run RuboCop
+      run: bundle exec rubocop --parallel
