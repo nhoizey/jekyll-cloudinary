@@ -8,6 +8,12 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (6.1.4.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
@@ -54,12 +60,14 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
+    minitest (5.14.4)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
+    rack (2.2.3)
     rainbow (3.0.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
@@ -95,6 +103,10 @@ GEM
     rubocop-performance (1.11.5)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.12.4)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
@@ -103,9 +115,13 @@ GEM
       ffi (~> 1.9)
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
+    zeitwerk (2.5.1)
 
 PLATFORMS
+  universal-darwin-8
   x64-mingw32
   x86_64-linux
 
@@ -116,6 +132,7 @@ DEPENDENCIES
   rspec (~> 3.10)
   rubocop (~> 1.21)
   rubocop-performance
+  rubocop-rails
 
 BUNDLED WITH
    2.2.30
