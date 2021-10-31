@@ -110,6 +110,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  jekyll (~> 4.2)
   jekyll-cloudinary!
   rake (~> 13.0)
   rspec (~> 3.10)

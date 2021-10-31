@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 # Specify your gem's dependencies in jekyll-cloudinary.gemspec
 gemspec
+gem "jekyll", "~> 4.2"
 
 gem "rake", "~> 13.0"
 
