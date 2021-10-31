@@ -17,6 +17,7 @@ jobs:
       uses: ruby/setup-ruby@v1.84.0
       with:
         ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
     - name: Cache gems
       uses: actions/cache@v1
       with:
@@ -29,7 +30,5 @@ jobs:
         bundle config path vendor/bundle
         bundle config set without 'default doc job cable storage ujs test db'
         bundle install --jobs 4 --retry 3
-    - name: Run tests
-      run: bundle exec rake
-    - name: Run RuboCop
-      run: bundle exec rubocop --parallel
+        bundle exec rake
+        bundle exec rubocop --parallel
