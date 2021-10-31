@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby-version: [head, 2.7.4, 2.6.8, 2.5.9]
+        ruby-version: [head, 2.7.4, 2.6.8]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
