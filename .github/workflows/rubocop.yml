@@ -4,19 +4,19 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
-strategy:
+    strategy:
       matrix:
-        ruby:
-          - 3.0.2
+        ruby-version: [3.0.x, 2.7.x, 2.6.x, 2.5.x]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby ${{ matrix.ruby }}
-      uses: ruby/setup-ruby@v1
+    - name: Set up Ruby ${{ matrix.ruby-version }}
+      uses: ruby/setup-ruby@v1.84.0
       with:
-        ruby-version: ${{ matrix.ruby }}
+        ruby-version: ${{ matrix.ruby-version }}
     - name: Cache gems
       uses: actions/cache@v1
       with:
@@ -29,5 +29,7 @@ strategy:
         bundle config path vendor/bundle
         bundle config set without 'default doc job cable storage ujs test db'
         bundle install --jobs 4 --retry 3
+    - name: Run tests
+      run: bundle exec rake
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
