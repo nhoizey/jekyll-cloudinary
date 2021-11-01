@@ -1,8 +1,11 @@
+inherit_from: .rubocop_todo.yml
+
 inherit_gem:
   jekyll: .rubocop.yml
 
 AllCops:
   TargetRubyVersion:  3.0.2
+  NewCops: enable
   Exclude:
     - script/**/*
     - vendor/**/*
@@ -19,10 +22,6 @@ Layout/LineLength:
   Exclude:
     - lib/jekyll/cloudinary.rb
   Max: 120
-
-Layout/EndOfLine:
-  Exclude:
-    - 'jekyll-cloudinary/bin/console'
 
 Lint/UselessAssignment:
   Exclude:
