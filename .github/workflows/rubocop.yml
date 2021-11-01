@@ -7,7 +7,6 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      fail-fast: false
       matrix:
         ruby-version: [head, 2.7.4, 2.6.8]
         os: [ubuntu-latest, windows-latest, macOS-latest]
@@ -28,7 +27,8 @@ jobs:
           ${{ matrix.os }}-rubocop-
     - name: Install gems
       run: |
+        wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
         bundle install --jobs 4 --retry 3
         bundle exec rspec
         bundle exec rake
-        bundle exec rubocop --auto-gen-config --parallel
+        bundle exec rubocop --parallel
