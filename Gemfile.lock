@@ -151,6 +151,7 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
+  ruby
   universal-darwin-8
   x64-mingw32
   x64-unknown
