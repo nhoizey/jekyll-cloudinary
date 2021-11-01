@@ -7,6 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         ruby-version: [head, 2.7.4, 2.6.8]
         os: [ubuntu-latest, windows-latest, macOS-latest]
@@ -21,7 +22,6 @@ jobs:
     - name: Cache gems
       uses: actions/cache@v1
       with:
-        path: vendor/bundle
         key: ${{ matrix.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ matrix.os }}-rubocop-
