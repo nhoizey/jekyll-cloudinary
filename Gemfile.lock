@@ -131,8 +131,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (1.42.0)
-      rubocop (>= 0.87.0)
+    rubocop-rspec (2.5.0)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
@@ -152,8 +152,8 @@ GEM
 
 PLATFORMS
   universal-darwin-8
-  x64-mingw-ucrt
   x64-mingw32
+  x64-unknown
   x86_64-darwin-19
   x86_64-linux
 
@@ -166,7 +166,7 @@ DEPENDENCIES
   rubocop (~> 1.21)
   rubocop-performance
   rubocop-rails
-  rubocop-rspec (~> 1.22)
+  rubocop-rspec (~> 2.5)
 
 BUNDLED WITH
    2.2.30
