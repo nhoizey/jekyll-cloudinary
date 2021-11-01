@@ -19,7 +19,7 @@ jobs:
       uses: anmarkoulis/commitizen-changelog-reader@master
       with:
         tag_name: ${{ github.ref }}
-        changelog: RELEASES.md
+        changelog: ./RELEASES.md
     - uses: actions/checkout@master
     - name: Create a Release ${{ github.ref }}
       uses: elgohr/Github-Release-Action@master
