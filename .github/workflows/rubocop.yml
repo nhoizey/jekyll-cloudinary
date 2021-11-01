@@ -31,5 +31,5 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec rspec
         bundle exec rake
-        wget --directory-prefix="$(bundle show jekyll)" https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml
+        wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
         bundle exec rubocop --parallel
