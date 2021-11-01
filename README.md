@@ -1,7 +1,8 @@
 # Jekyll Cloudinary Liquid tag
-
+[![RuboCop](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml/badge.svg)](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml)
+<!--
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
-[![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary)
+[![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary) -->
 
 `jekyll-cloudinary` is a [Jekyll](http://jekyllrb.com/) plugin adding a [Liquid](http://liquidmarkup.org) tag to ease the use of [Cloudinary](https://nho.io/cloudinary-signup) for responsive images in your Markdown/[Kramdown](http://kramdown.gettalong.org/) posts.
 
