@@ -31,4 +31,4 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec rspec
         bundle exec rake
-        bundle exec rubocop --auto-gen-config --parallel
+        bundle exec rubocop --auto-correct-all --auto-gen-config --parallel
