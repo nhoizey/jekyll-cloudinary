@@ -22,6 +22,7 @@ jobs:
     - name: Cache gems
       uses: actions/cache@v1
       with:
+        path: vendor/bundle
         key: ${{ matrix.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ matrix.os }}-rubocop-
