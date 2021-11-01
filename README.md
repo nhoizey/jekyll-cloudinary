@@ -21,32 +21,34 @@ Here is the general syntax of this Liquid tag:
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of contents
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-  - [Mandatory settings](#mandatory-settings)
-  - [Optional global settings](#optional-global-settings)
-    - [`only_prod` (default: `false`)](#only_prod-default-false)
-    - [`verbose` (default: `false`)](#verbose-default-false)
-    - [`origin_url`](#origin_url)
-  - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
-    - [Default preset](#default-preset)
-    - [Additional presets](#additional-presets)
-  - [Detailed preset settings](#detailed-preset-settings)
-    - [`figure` (default: `auto`)](#figure-default-auto)
-    - [`min_width` (default: `320`)](#min_width-default-320)
-    - [`max_width` (default: `1200`)](#max_width-default-1200)
-    - [`fallback_max_width` (defaut: `1200`)](#fallback_max_width-defaut-1200)
-    - [`steps` (default: `5`)](#steps-default-5)
-    - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
-    - [`attributes` (default: none)](#attributes-default-none)
-- [Liquid tag values](#liquid-tag-values)
-- [Liquid tag attributes](#liquid-tag-attributes)
-  - [Recommended attributes](#recommended-attributes)
-  - [Loading attribute](#loading-attribute)
-  - [Other interesting attributes](#other-interesting-attributes)
-- [Live example](#live-example)
-- [Contributing](#contributing)
-- [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
+- [Jekyll Cloudinary Liquid tag](#jekyll-cloudinary-liquid-tag)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+    - [Mandatory settings](#mandatory-settings)
+    - [Optional global settings](#optional-global-settings)
+      - [`only_prod` (default: `false`)](#only_prod-default-false)
+      - [`verbose` (default: `false`)](#verbose-default-false)
+      - [`origin_url`](#origin_url)
+    - [Optional (but highly recommended) presets](#optional-but-highly-recommended-presets)
+      - [Default preset](#default-preset)
+      - [Additional presets](#additional-presets)
+    - [Detailed preset settings](#detailed-preset-settings)
+      - [`figure` (default: `auto`)](#figure-default-auto)
+      - [`min_width` (default: `320`)](#min_width-default-320)
+      - [`max_width` (default: `1200`)](#max_width-default-1200)
+      - [`fallback_max_width` (defaut: `1200`)](#fallback_max_width-defaut-1200)
+      - [`steps` (default: `5`)](#steps-default-5)
+      - [`sizes` (default: `"100vw"`)](#sizes-default-100vw)
+      - [`attributes` (default: none)](#attributes-default-none)
+  - [Liquid tag values](#liquid-tag-values)
+  - [Liquid tag attributes](#liquid-tag-attributes)
+    - [Recommended attributes](#recommended-attributes)
+    - [Loading attribute](#loading-attribute)
+    - [Other interesting attributes](#other-interesting-attributes)
+  - [Live example](#live-example)
+  - [Contributing](#contributing)
+  - [Do you use the plugin on a live site?](#do-you-use-the-plugin-on-a-live-site)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -93,7 +95,7 @@ cloudinary:
 
 #### `only_prod` (default: `false`)
 
-When set to `true`, this setting implies that responsive image HTML and Cloudinary URLs are generated only if the environnement is `production`.
+When set to `true`, this setting implies that responsive image HTML and Cloudinary URLs are generated only if the environment is `production`.
 
 For example:
 
@@ -120,7 +122,7 @@ or
 
 #### `origin_url`
 
-When `origin_url` is set, jekyll-cloudinary will use this URL rather than `site.url` as origin of the source images.
+When `origin_url` is set, **jekyll-cloudinary** will use this URL rather than `site.url` as origin of the source images.
 
 This allows you to store your source image on a different domain than your website.
 
@@ -302,7 +304,7 @@ You can also use attributes to add a `class`, `aria-*` attributes for enhanced a
 
 Go to this post: [https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html](https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html).
 
-The source Markdown is here: [https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md](https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md).
+The source Markdown is here: [https://github.com/mavaddat/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md](https://github.com/mavaddat/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md).
 
 The content is in french, yes, but look only at the images if you don't understand.
 
@@ -422,8 +424,8 @@ article {
 
 ## Contributing
 
-Thanks for your interest in contributing! There are many ways to contribute to this project. [Get started here](https://github.com/nhoizey/jekyll-cloudinary/blob/master/CONTRIBUTING.md).
+Thanks for your interest in contributing! There are many ways to contribute to this project. [Get started here](./CONTRIBUTING.md).
 
 ## Do you use the plugin on a live site?
 
-Add it to [the "Sites" page of the wiki](https://github.com/nhoizey/jekyll-cloudinary/wiki/Sites) and please let me know on Twitter: [@nhoizey](https://twitter.com/nhoizey)
+Add it to [the "Sites" page of the wiki](./wiki/Sites) and please let me know on Twitter: [@mavaddat](https://twitter.com/mavaddat)

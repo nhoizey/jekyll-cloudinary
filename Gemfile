@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 gem "jekyll", "~> 4.2"
 gem "cloudinary", "~> 1.21"
-gem "rake", "~> 13.0"
+gem "rake", "~> 13.0.6"
 
 group :rubocop do
   gem "rubocop", "~> 1.21", require: false

@@ -161,7 +161,7 @@ DEPENDENCIES
   cloudinary (~> 1.21)
   jekyll (~> 4.2)
   jekyll-cloudinary!
-  rake (~> 13.0)
+  rake (~> 13.0.6)
   rspec (~> 3.10)
   rubocop (~> 1.21)
   rubocop-performance
