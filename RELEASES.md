@@ -1,6 +1,8 @@
 # Releases
 
-## [v1.21](#)
+## [v1.21](https://github.com/mavaddat/jekyll-cloudinary/releases/tag/v1.21)
+
+Bump to Bundler 2.2.30. Update Rubocop idioms.     
 
 ## [v1.14.1](https://github.com/mavaddat/jekyll-cloudinary/releases/tag/v1.14.1)
 

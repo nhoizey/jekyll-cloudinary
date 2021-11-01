@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-cloudinary (1.14.1)
+    jekyll-cloudinary (1.21)
       fastimage (~> 2.2)
       jekyll (~> 4.2)
 

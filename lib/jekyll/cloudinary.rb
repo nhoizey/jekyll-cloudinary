@@ -57,7 +57,7 @@ module Jekyll
           "transformation"     => false,
         }
 
-        # TODO: Add validation for this parameters
+        # TODO: Add validation for these parameters
         transformation_options = {
           "height"         => "h",
           "crop"           => "c", # can include add-on: imagga_scale

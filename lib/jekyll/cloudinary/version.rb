@@ -2,6 +2,6 @@
 
 module Jekyll
   module Cloudinary
-    VERSION = "1.14.1"
+    VERSION = "1.21"
   end
 end
