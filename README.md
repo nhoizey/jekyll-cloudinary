@@ -1,5 +1,5 @@
 # Jekyll Cloudinary Liquid tag
-[![RuboCop](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml/badge.svg)](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml)
+[![Build](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml/badge.svg)](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml)
 <!--
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
 [![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary) -->
