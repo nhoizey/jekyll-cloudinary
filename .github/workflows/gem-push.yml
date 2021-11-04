@@ -18,10 +18,10 @@ jobs:
         ruby-version: [head]
 
     steps:
-    - name: Set the value
-      id: step_one
+    - name: Query Ruby Version
+      id: get_version
       run: |
-        echo "ruby_version=$(`ruby -v | cut -d " " -f 2`)" >> $GITHUB_ENV
+        echo $(curl -s https://api.github.com/repos/ruby/ruby/tags | jq -r '.[0].name') >> $GITHUB_ENV
     - uses: actions/checkout@v2
     - name: Set up Ruby ${{ env.ruby_version }}
       uses: ruby/setup-ruby@v1
