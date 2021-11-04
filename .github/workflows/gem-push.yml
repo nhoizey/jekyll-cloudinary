@@ -18,8 +18,12 @@ jobs:
         ruby-version: [head]
 
     steps:
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "ruby_version=$(`ruby -v | cut -d " " -f 2`)" >> $GITHUB_ENV
     - uses: actions/checkout@v2
-    - name: Set up Ruby ${{ ruby -v | cut -d " " -f 2 }}
+    - name: Set up Ruby ${{ env.ruby_version }}
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
