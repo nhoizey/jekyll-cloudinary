@@ -113,7 +113,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
-    rubocop (1.22.3)
+    rubocop (1.23.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -122,7 +122,7 @@ GEM
       rubocop-ast (>= 1.12.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.12.0)
+    rubocop-ast (1.13.0)
       parser (>= 3.0.1.1)
     rubocop-performance (1.12.0)
       rubocop (>= 1.7.0, < 2.0)
@@ -164,7 +164,7 @@ DEPENDENCIES
   jekyll-cloudinary!
   rake (~> 13.0.6)
   rspec (~> 3.10)
-  rubocop (~> 1.21)
+  rubocop (~> 1.23)
   rubocop-performance
   rubocop-rails
   rubocop-rspec (~> 2.5)
