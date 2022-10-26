@@ -39,11 +39,12 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "fastimage", "~> 2.2"
   spec.add_runtime_dependency "jekyll", "~> 4.2"
-  spec.add_development_dependency "rake", "~> 13.0.6"
-  spec.add_development_dependency "rubocop", "~> 1.22"
+  spec.add_development_dependency "rake", "~> 13.0.6
+  spec.add_development_dependency "rubocop", "~> 1.37.1"
   spec.add_development_dependency "rspec", "~> 3.10"
   spec.add_development_dependency "rubocop-rspec", "~> 2.5"
   spec.add_development_dependency "rubocop-rails", "~> 2.13"
   spec.add_development_dependency "rubocop-performance", "~> 1.13"
   spec.add_development_dependency "cloudinary", "~> 1.21"
+  spec.add_development_dependency "bundler", "~> 1.16"
 end
