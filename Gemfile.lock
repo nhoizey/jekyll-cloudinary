@@ -146,6 +146,7 @@ GEM
     webrick (1.7.0)
 
 PLATFORMS
+  x86_64-darwin-19
   x86_64-linux
 
 DEPENDENCIES
@@ -163,4 +164,4 @@ DEPENDENCIES
   rubocop-rspec (~> 2.5)
 
 BUNDLED WITH
-   2.3.0
+   2.4.0.dev
