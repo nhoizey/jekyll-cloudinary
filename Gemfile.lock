@@ -164,4 +164,4 @@ DEPENDENCIES
   rubocop-rspec (~> 2.5)
 
 BUNDLED WITH
-   2.4.0.dev
+   2.3.0
