@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.version = Jekyll::Cloudinary::VERSION
   spec.name          = "jekyll-cloudinary"
   spec.version       = Jekyll::Cloudinary::VERSION
-  spec.authors       = ["Mavaddat Javid"]
-  spec.email         = ["info@mavaddat.ca"]
+  spec.authors       = ["Nicolas Hoizey", "Mavaddat Javid"]
+  spec.email         = ["nicolas@hoizey.com","info@mavaddat.ca"]
   spec.files = %w(Rakefile Gemfile README.md RELEASES.md LICENSE) + Dir["lib/**/*"]
   spec.summary       = "Jekyll plugin providing Cloudinary-powered responsive image generation"
   spec.description   = <<-DESC
@@ -46,5 +46,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop-rails", "~> 2.13"
   spec.add_development_dependency "rubocop-performance", "~> 1.13"
   spec.add_development_dependency "cloudinary", "~> 1.21"
-  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "bundler"
 end

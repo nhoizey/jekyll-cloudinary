@@ -10,6 +10,8 @@ gem "rake", "~> 13.0.6"
 
 group :rubocop do
   gem "rubocop", "~> 1.25", require: false
+  gem 'rubocop-minitest', require: false
+  gem "rubocop-rake", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
 end
