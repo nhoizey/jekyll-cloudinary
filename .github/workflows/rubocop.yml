@@ -1,0 +1,34 @@
+name: RuboCop
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        ruby-version: [head, 2.7.4]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby ${{ matrix.ruby-version }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+    - name: Cache gems
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ matrix.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ matrix.os }}-rubocop-
+    - name: Install gems
+      run: |
+        wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
+        bundle install --jobs $(nproc) --retry 3
+        bundle exec rspec
+        bundle exec rake
+        bundle exec rubocop --parallel

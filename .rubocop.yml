@@ -1,15 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
 inherit_gem:
   jekyll: .rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 3.2.0
+  NewCops: enable
   Exclude:
     - script/**/*
     - vendor/**/*
 
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Exclude:
+    - lib/jekyll/cloudinary.rb
+  Max: 120
+
 Lint/UselessAssignment:
   Exclude:
     - lib/jekyll/cloudinary.rb
+
 Metrics/AbcSize:
   Exclude:
     - lib/jekyll/cloudinary.rb
@@ -17,9 +34,6 @@ Metrics/BlockNesting:
   Exclude:
     - lib/jekyll/cloudinary.rb
 Metrics/CyclomaticComplexity:
-  Exclude:
-    - lib/jekyll/cloudinary.rb
-Metrics/LineLength:
   Exclude:
     - lib/jekyll/cloudinary.rb
 Metrics/MethodLength:

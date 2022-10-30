@@ -1,0 +1,29 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get version from tag
+      id: tag_name
+      run: |
+        echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+      shell: bash
+    - name: Get notes
+      id: generate_notes
+      uses: anmarkoulis/commitizen-changelog-reader@master
+      with:
+        tag_name: ${{ github.ref }}
+        changelog: ./RELEASES.md
+    - uses: actions/checkout@master
+    - name: Create a Release ${{ github.ref }}
+      uses: elgohr/Github-Release-Action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        args: ${{join(fromJson(steps.generate_notes.outputs.notes).notes, '')}}

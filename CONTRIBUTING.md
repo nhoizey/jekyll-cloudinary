@@ -32,6 +32,6 @@ If you have any questions, create an [issue](issue) (protip: do a quick search f
 
 ### Contributors
 
-Thank you to [all the people who have already contributed](https://github.com/nhoizey/jekyll-cloudinary/graphs/contributors) to jekyll-cloudinary!
+Thank you to [all the people who have already contributed](https://github.com/mavaddat/jekyll-cloudinary/graphs/contributors) to jekyll-cloudinary!
 
 <!-- This `CONTRIBUTING.md` is based on @nayafia's template https://github.com/nayafia/contributing-template -->
