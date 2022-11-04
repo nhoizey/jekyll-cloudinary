@@ -8,12 +8,11 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.7)
+    activesupport (7.0.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
@@ -93,7 +92,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rouge (3.30.0)
+    rouge (4.0.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -130,7 +129,7 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.14.2)
+    rubocop-rspec (2.15.0)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
     safe_yaml (1.0.5)
@@ -145,9 +144,9 @@ GEM
     unf_ext (0.0.8.2)
     unicode-display_width (2.3.0)
     webrick (1.7.0)
-    zeitwerk (2.6.4)
 
 PLATFORMS
+  x64-mingw-ucrt
   x86_64-darwin-19
   x86_64-linux
 
