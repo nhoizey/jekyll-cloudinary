@@ -28,13 +28,24 @@ jobs:
     - name: Install gems
       run: |
         wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
-        if [ "$RUNNER_OS" == "Linux"]; then
-          bundle install --jobs $(nproc) --retry 3
-        elif [ "$RUNNER_OS" == "Windows" ]; then
-          bundle install --jobs $env:NUMBER_OF_PROCESSORS --retry 3
-        elif [ "$RUNNER_OS" == "macOS" ]; then
-          bundle install --jobs $(sysctl -n hw.logicalcpu) --retry 3
-        fi
+        bundle install --jobs $(nproc) --retry 3
         bundle exec rspec
         bundle exec rake
         bundle exec rubocop --parallel
+      if: matrix.os == 'ubuntu-latest'
+    - name: Install gems
+      run: |
+        wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
+        bundle install --jobs $env:NUMBER_OF_PROCESSORS --retry 3
+        bundle exec rspec
+        bundle exec rake
+        bundle exec rubocop --parallel
+      if: matrix.os == 'windows-latest'
+    - name: Install gems
+      run: |
+        wget https://raw.githubusercontent.com/jekyll/jekyll/master/.rubocop_todo.yml --directory-prefix="$(bundle show jekyll)";
+        bundle install --jobs $(sysctl -n hw.logicalcpu) --retry 3
+        bundle exec rspec
+        bundle exec rake
+        bundle exec rubocop --parallel
+      if: matrix.os == 'macOS-latest'
