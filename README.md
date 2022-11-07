@@ -1,5 +1,5 @@
 # Jekyll Cloudinary Liquid tag
-[![Build](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml/badge.svg)](https://github.com/mavaddat/jekyll-cloudinary/actions/workflows/rubocop.yml)
+[![Build](https://github.com/nhoizey/jekyll-cloudinary/actions/workflows/rubocop.yml/badge.svg)](https://github.com/nhoizey/jekyll-cloudinary/actions/workflows/rubocop.yml)
 <!--
 [![Gem Version](https://badge.fury.io/rb/jekyll-cloudinary.svg)](https://badge.fury.io/rb/jekyll-cloudinary)
 [![Gem Downloads](https://img.shields.io/gem/dt/jekyll-cloudinary.svg?style=flat)](http://rubygems.org/gems/jekyll-cloudinary) -->
@@ -305,7 +305,7 @@ You can also use attributes to add a `class`, `aria-*` attributes for enhanced a
 
 Go to this post: [https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html](https://nicolas-hoizey.com/2016/07/tout-change-rien-ne-change.html).
 
-The source Markdown is here: [https://github.com/mavaddat/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md](https://github.com/mavaddat/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md).
+The source Markdown is here: [https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md](https://github.com/nhoizey/nicolas-hoizey.com/blob/master/_posts/2016/07/13-tout-change-rien-ne-change/2016-07-13-tout-change-rien-ne-change.md).
 
 The content is in french, yes, but look only at the images if you don't understand.
 
@@ -429,4 +429,4 @@ Thanks for your interest in contributing! There are many ways to contribute to t
 
 ## Do you use the plugin on a live site?
 
-Add it to [the "Sites" page of the wiki](./wiki/Sites) and please let me know on Twitter: [@mavaddat](https://twitter.com/mavaddat)
+Add it to [the "Sites" page of the wiki](./wiki/Sites) and please let us know on Twitter: [@mavaddat](https://twitter.com/mavaddat)  [@nhoizey](https://twitter.com/nhoizey)
