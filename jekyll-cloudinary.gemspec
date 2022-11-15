@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "fastimage", "~> 2.2"
   spec.add_runtime_dependency "jekyll", "~> 4.2"
   spec.add_development_dependency "rake", "~> 13.0.6"
-  spec.add_development_dependency "rubocop", "~> 1.38.0"
+  spec.add_development_dependency "rubocop", "~> 1.39.0"
   spec.add_development_dependency "rspec", "~> 3.10"
   spec.add_development_dependency "rubocop-rspec", "~> 2.5"
   spec.add_development_dependency "rubocop-rails", "~> 2.13"
