@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in jekyll-cloudinary.gemspec
 gemspec
 gem "jekyll", "~> 4.2"
-gem "cloudinary", "~> 1.21"
+gem "cloudinary", "~> 1.24"
 gem "rake", "~> 13.0.6"
 
 group :rubocop do
