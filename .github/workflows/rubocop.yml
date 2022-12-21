@@ -19,7 +19,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
     - name: Cache gems
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
         path: vendor/bundle
         key: ${{ matrix.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
