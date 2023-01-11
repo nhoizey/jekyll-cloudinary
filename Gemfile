@@ -9,7 +9,7 @@ gem "cloudinary", "~> 1.25"
 gem "rake", "~> 13.0.6"
 
 group :rubocop do
-  gem "rubocop", "~> 1.42", require: false
+  gem "rubocop", "~> 1.43", require: false
   gem 'rubocop-minitest', require: false
   gem "rubocop-rake", require: false
   gem "rubocop-performance", require: false
