@@ -8,7 +8,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.7.3)
+    activesupport (6.1.7.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -44,7 +44,7 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http_parser.rb (0.8.0)
-    i18n (1.12.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jekyll (4.3.2)
       addressable (~> 2.4)
@@ -79,7 +79,7 @@ GEM
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
-    minitest (5.18.0)
+    minitest (5.19.0)
     netrc (0.11.0)
     parallel (1.23.0)
     parser (3.2.2.1)
@@ -169,7 +169,7 @@ GEM
     unf_ext (0.0.8.2-x64-mingw32)
     unicode-display_width (2.4.2)
     webrick (1.7.0)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   x64-mingw-ucrt
